@@ -1,0 +1,28 @@
+Java:
+====
+Association -->  Composition and Aggregation in Java
+Abstract class vs Inheritense ? How different from Interface ?
+
+
+
+1. Difference b/w Abstract or Interface. 
+2. What is Future Interface ? 
+3. Telephone Dictionary implementation and Sort ? Sort with Multiple parameters ? 
+4. How is tree map is better for sorting ? insert sort ? 
+5. Collection.sort() which algorithom uses ? merge sort ?
+6. Spring Application context do ? 
+7. Spring Security context ? 
+
+Kafka:
+=====
+
+1. How to make sure you get response of produced message ? 
+2. 
+
+Micro Service:
+==============
+
+1. Service one hit two other services parallelly and collabarate and send response. 
+2. How to call one service to other service -- >
+3. SOLID Design principle. 
+4. Object vs class level locking ? 

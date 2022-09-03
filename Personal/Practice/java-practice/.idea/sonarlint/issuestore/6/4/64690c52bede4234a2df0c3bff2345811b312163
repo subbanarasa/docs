@@ -1,0 +1,19 @@
+
+I
+java:S2755,"3Disable access to external entities in XML parsing.(İ‰Ë–
+N
+java:S2755"3Disable access to external entities in XML parsing.(ƒ”±êùÿÿÿÿ
+\
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(ØÓıõùÿÿÿÿ
+N	java:S106%"9Replace this use of System.out or System.err by a logger.(åäµş
+P	java:S125/"<This block of commented-out lines of code should be removed.(ç¥†
+S	java:S1067"9Replace this use of System.out or System.err by a logger.(“Â°Ÿıÿÿÿÿ
+P
+java:S1128"5Remove this unused import 'org.xml.sax.SAXException'.(ü…ãşÿÿÿÿ
+f
+java:S1128
+"KRemove this unused import 'javax.xml.parsers.ParserConfigurationException'.(ûıƒøÿÿÿÿ
+Q
+java:S1128";Remove this unused import 'javax.xml.transform.OutputKeys'.(‹ü¾›
+Z
+java:S1128"DRemove this unused import 'javax.xml.transform.stream.StreamSource'.(ÜÌí›

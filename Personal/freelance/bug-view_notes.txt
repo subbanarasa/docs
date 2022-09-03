@@ -1,0 +1,27 @@
+
+
+
+ssh -i "budview.pem" ubuntu@ec2-18-190-155-40.us-east-2.compute.amazonaws.com
+
+
+ssh -i "budview.pem" ubuntu@ec2-3-139-102-20.us-east-2.compute.amazonaws.com  --Dev
+
+
+
+
+docker exec -it 7b0118003bbc /bin/bash
+
+
+docker inspect -f '{{ .Mounts }}' 7b0118003bbc   
+
+
+/mnt/efs/mongodata /data/db 
+
+
+sudo docker run -it -v /mnt/efs/mongodata:/data/db --name mongodb -d mongo
+
+sudo docker run -it -v /mongodata:/data/db --name mongodb -d mongo
+
+
+
+https://my.siteground.com/ --- subbanarasareddy@gmail.com/Nikhil@031982

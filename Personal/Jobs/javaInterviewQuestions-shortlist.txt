@@ -1,0 +1,236 @@
+
+COLLECTIONS
+------------------------------------------------------------------------------------------------------------
+- What is a Hashmap, how it works. get-put time constant ?  
+- What is the difference between Hashmap and HashTable (Synch)  
+- Difference between HashTable and ConcurrentMap (HashTable SingleLock ConcurrentMap MultipleLock)
+- How LinkedList works ? How it is Linked ? 
+- Difference between Arrays and ArrayLists xx
+- What about ArrayList vs LinkedList. Which one is better, where to use which ?
+- Main character of sets, difference with lists (no duplicate objects)
+- LIFO and FIFO collections example (LIFO Stack FIFO Queue) 1/2 xx
+- What happens when we are inserting to hasmap and hash colision happens
+- What is contract for hashCode and equals
+
+INHERITENCE
+------------------------------------------------------------------------------------------------------------
+- How would you describe an interface ? What is the difference betweeen an Abstract class and Interface
+- What is difference between inheritance and composition (is-a / has-a) ? Can you give us some examples  ?
+- What is difference between overriding a method an overloading it ? Can you give us some examples ?
+- What is polymorhism in Java. Can you give us example ? E.g. with a collection ?
+- What encapsulation principle means. How we can achieve it ? 
+- What are access modifiers in java ?
+- Can you describe difference between reserved word private, protected and public ? (protected ) xx
+- What default(package) access level means and how it is declared ?
+- Can an abstract class implement an interface ? (Y)
+- Can a class implement another class ? (N)
+	- But it can extend right ? (Y)
+- Can an interface extend another interface ? (Y)
+	- But it cant implement ? (N)
+- Can a class extend another class and implement an interface at the same time ?
+- Can a class extend multiple classes ? (N) Why ? (Diamond problem) 
+- Can a class implement multiple interfaces ? (Y)
+- Can final method be also abstract ? 
+- Can be protected method of a class accessed from outside of the class package ? How ? 
+- If class B extends A. Can class A and B contain same private method with same name and method signatur arguments ? xx
+
+JAVA
+------------------------------------------------------------------------------------------------------------
+- What are static methods and variables ?
+- Can be static method called from non-static method ? 
+- Can be non-static method called from static method ?
+- Can be static method called using class instance ? Is it good practice ? xx 
+- Can be static method inherited from parent class and called there without any qualifier ? xx
+- What is an immutable object in Java ? (An object is immutable if its state cannot change after construction)
+	- What is the easiest way of creating an immutable object ? (Making a variable final)		
+- What is the difference between primitive types and objects ? Can you name some primitives ?
+		- What is a wrapper class ? 
+		- What is autoboxing - unboxing ? 
+		- Integer immutable ? xx
+		
+- Are primitive types immutable ? 
+- Are wrapped objects immutable ?
+- What is a final class in java ?
+		- What are the other ways of making an immutable class ? (Make all fields final OR don't expose any setters OR return a new instance in setters)
+- What is the difference between == and equals() method 
+- What is difference between & and && or | and || operators ? x   
+- What is stack and heap memory in Java ? What is the difference ? 
+- What is the garbage collector in Java ? x
+- Can we invoke garbage collection explicitly. How ? (System.gc()) Is it reliable ?
+- What algorithm is used by GB to find object to garbage collection (mark and sweep algorithm) ?
+- Where static objects are stored heap or stack ... ? (perm gen space, method area)
+- Is it possible  to suggest to the JVM that it perform garbage collection ? If so  how ? And what will be the result ?
+- How we can do it ? (System.gc()) Is it reliable ?
+- What is memory leak ?
+- What is purpose of Object finalize() method and how it works ?  xx
+- How would you use this method to prevent the Object instance to be garbage collected ? 
+- When you did so will garbage collector to run this method again when this object will get again eligible for garbage collection ? 
+- Is it ensured that finalize method will be always called ? 
+- Do you know any design patterns ? (Singleton, Factory, Builder) Do you have a favourite one ?
+	- OPTIONAL What is singleton ?
+- What you need to do if you want to serialize class to a stream ?	
+- How do you make class serializable ? If e.g. class A extends B and be contains class C inside ?
+- What transient reserved word means in Java ? 
+- Can collections be serialized/deserialized ? Which condition must be fulfilled ?
+- Can be an object serialzed on one JVM(e.g. Oracle) deserialized on differend JVM (e.g OpenJDK)
+- What is escape sequence in Java string or regular expressions. Could you give as some examples. E.g. how to escape special charaters like CR/LF, white characters etc ?
+- What is difference between StringBuilder and StringBuffer classes ?
+- How would you specify class path for JVM ? ($CLASSPATH env variable, -cp option)
+- How would you specify java system property on command line ? -Dname
+- How would you read it in code ? (System.getProperty)
+
+EXCEPTIONS 
+------------------------------------------------------------------------------------------------------------
+- What is the difference between checked and unchecked exceptions ?
+- Is order of catch clauses important ?
+- What is finally ?
+- What is Autocloseable interface 
+
+
+THREADS
+------------------------------------------------------------------------------------------------------------
+- What is a thread ? (Lightweight process, shares some memory - unlike processes)
+- How can you create a thread in Java ? (extend thread or implement runnable)
+- E.g. you have an important method, and only one thread should access it in the same time. How would you solve this problem ? (synchronized keyword) 
+- What is a lock ? What is a deadlock ? xx
+- Can a class instance be a lock ? What can be used as a lock ?
+- What is purpose of synchronize reserved word ? 
+- Can java method be synchronized ?
+- Can block of java code be synchronized ? How ?
+- Can variable be synchronized ?
+= Can class be synchronized ?
+- What volatile reserved word is used for ? xx
+- What is volatile variable ? What is it good for ?
+- What is difference between Thread.run() and Thread.start() method ? Whhich of these will start a new thread ?
+- What is purpose of Objects methods wait, notify and notifyAll ?
+- What exception you must handle when calling Object.wait ?
+- What is difference between notify and notifyAll methods ?
+- When calling method wait on an Object do we need to use synchronized section ? How exactly and why ?
+- What is java.util.concurrent package purpose ? Can you name some classes from it ? (Future,Executor, Task, ExecutorService, Locks) 
+- What is purpose of Thread.join method ?
+- What Thread.sleep method does ? What exception we must handle when calling it ?
+
+REST
+------------------------------------------------------------------------------------------------------------
+- What is a Rest service ?
+- What is the "Stateless" in REST ? What does it mean ? 
+- What are the most common REST methods ? (POST, GET, PUT, PATCH, DELETE)
+		- What is the difference between PUT and POST ?
+		- Do you know what is idempotent, and which ones are idempotent ? 	
+SPRING
+------------------------------------------------------------------------------------------------------------
+- What is dependency injection ? 
+- What is a bean in Spring ?
+- Can you name some spring bean scopes ? What are the differences ?
+- What is Spring Boot ? What does it solve ?
+
+EXTRA
+------------------------------------------------------------------------------------------------------------
+What is  “clean code” ? 
+What doeas  “technical debt” mean to you? x 
+What are rules for write unit tests ? What are best practices for UTs.
+Why should we write unit tests ?
+
+=================
+
+ADDITIONAL
+---------------------------------------------------------------------------------------------------------------
+Can be char type assigned o int type variable ?
+int x = 010; // what value will be printed if we print x variable to standard output
+byte x = (byte) (byte1 + byte2); Presume that byte1 and byte2 variables are both of type byte. Is type cast required here ? If so why ?
+byte x = 128; Will this compile or not ?
+byte x = (byte) 128; // what value will be printed if we print x variable to standard output
+b = b + 7; // Presume that b is of type byte. Will this compile or not ?
+Integer i1 = 1000; Integer i2 = 1000; What will be result if we compare these variables by == operator and equals method
+Integer i3 = 10; Integer i4 = 10; What will be result if we compare these variables by == operator and equals method. 
+
+---
+Widening vs. Boxing
+
+class AddBoxing {
+	static void go(Integer x) { System.out.println("Integer"); }
+	static void go(long x) { System.out.println("long"); }
+	public static void main(String [] args) {
+	int i = 5;
+	go(i); // which go() will be invoked ?
+	}
+}
+-------
+Widening and Boxing vs var args
+class AddVarargs {
+	static void go(int x, int y) { System.out.println("int,int");}
+	static void go(byte... x) { System.out.println("byte... "); }
+	public static void main(String[] args) {
+		byte b = 5;
+		go(b,b); // which go() will be invoked?
+	}
+}
+------
+class BoxOrVararg {
+	static void go(Byte x, Byte y) { System.out.println("Byte, Byte"); }
+	static void go(byte... x) { System.out.println("byte... "); }
+	public static void main(String [] args) {
+		byte b = 5;
+		go(b,b); // which go() will be invoked?
+	}
+}
+------------
+class WidenAndBox {
+	static void go(Long x) { System.out.println("Long"); }
+	public static void main(String [] args) {
+		byte b = 5;
+		go(b); // will this compile ?
+	}
+}
+---------------------
+class BoxAndWiden {
+	static void go(Object o) {
+		Byte b2 = (Byte) o; //  - it's a Byte object
+		System.out.println(b2);
+	}
+	public static void main(String [] args) {
+		byte b = 5;
+		go(b); Will this compile ?
+	}
+}
+----------------------
+Garbage collector
+
+Is it possible  to suggest to the JVM that it perform garbage collection ? If so  how ? And what will be the result ?
+What is memory leak ?
+What is purpose of Object finalize() method and how it works ?
+How would you use this method to prevent the Object instance to be garbage collected ?
+When you dit will garbage collector to run this method again when this object will get again eligible for garbage collection ? 
+
+-----------------------
+
+Can we use == operator for enum comparison ? What will be difference against using default Object.equals method ?
+
+class Cat { } 
+class Dog { }
+d instanceof Cat // If d is of type Dog, will this expression compile ?
+
+-----
+
+int [] nums = new int[3];
+nums instanceof Object // will this expression compile ?
+
+--------
+
+String a = "String"; int b = 3; int c = 7;
+System.out.println(a + b + c); What will be the result ?
+
+------
+
+for( ; ; ) { System.out.println("Running");}  // Will this compile, what will be the result ?
+
+
+==================
+
+
+Junior questions
+
+Experience in java (years)
+Describe projects and used technologies.
+What are your strong skills ?
+

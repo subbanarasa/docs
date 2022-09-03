@@ -1,0 +1,42 @@
+1. What is the Technical stack you want to work ? 
+2. Why your considering the job change ?
+3. You already using Angular-7 , why you need to change from your existing company? 
+4. Could you please explain angular modules ? --Controller, Directive, Filter modules.  
+5. What is inside of the Module file of the angular?
+6. What is the lazy loading of the Routing module ?
+7. How you declare componenet ? How to use this componenet?
+8. Name some cycle hooks in the componenet ?
+9. What is the example of hooks which you have used?
+10.Different life cycle hook of componenet ?
+11.What are the providers of the component ?
+12.What are the directives ?
+13.Type of Directives ?
+14.Different b/w component child and directive child ?
+15.What are the templates ?
+16.What about pipes ?
+17.What is data binding ?
+18.Explain two way binding in details ?
+19.What are the services and what is used for ?
+20.What is the dependency Injection ?    
+21.How to make service as singleton and how to inject it ?
+22.Difference b/w template or reactive forms ?
+23.How internalization support in Angular ?
+24.How you put internalization strings in Angular ?
+25.Could you please explain some details on Routing ?
+26.What are the Guards ? How it will be used in Routing ?
+27.What are the Receivers in the Routing ?
+28.What is the Router Outlet ?
+29.Unit testing in Angular ?
+30.Angular CLI ?
+31.What is Editor your using ?
+32.In CLI what are the command you have used?
+33.What is Observable and what it is used for ?
+34.Name some operators which are used in Observable. Rjax ?
+35.What is AOT compiler? Ahead of Time 
+36.What is the framework you used for styling ?
+37.Have you used Angular material or Bootstrap ?
+38.Do you have any experience on open-api or swagger ?39.  
+
+
+
+ 

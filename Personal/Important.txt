@@ -1,0 +1,204 @@
+https://akhq.kafka.orbit.cgiallpayments.cloud/ui/
+
+\\inprj-gpu02\LAPSHV\softwares
+
+
+orbit cluster
+=============
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlBZUmJtNmhoM05SSlYxbzROSVJOX3hfWjZiN2JiTWxhcWJLZ25SV0lya3cifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC10b2tlbi03Ymc0dyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImQxMmQ3YzliLWY3ODUtNGRhYy04NDVlLTU1Mjc2Y2IyODIzMSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDprdWJlcm5ldGVzLWRhc2hib2FyZCJ9.YZUJITISp-ZjbGfP40jlCYDB9Q4DR8m12VjDnRH9mm3NLHD8o1ZucI6ztPUdgBWTdIHoJkf9U7iP8Ax6v62xlBbVrSoTnxiMdGJxjI8M-S5shF4-meRepFdjPnbwpGIBlS7bfnHkRj4wofp7rK9m7ZnrDlBdz05_xYrZtxXht1yw7es3ypFKXMbb-GhE4OUBo3o9xuwCsUscZ6vXzKPd9zpEcF1i1LK_A03VDZbrmNEdOuBAzFQWhg_CZgwCPaSBpZhHEwf-E-tEdMe6-QApH9qZMhiQBE9h3jxSvFMATHK5OJg9-W-d9cTkuaWIKWxiAvcwA_lRz8HiWUzXrIwGmA
+
+https://proactionus.ent.cgi.com/confluence/pages/viewpage.action?spaceKey=PAYMTS&title=Setup+workstation+environment#Setupworkstationenvironment-TrustcustomCAcertificate
+
+https://proactionus.ent.cgi.com/confluence/download/attachments/169162268/Deployment%20procedure%20for%20NBC%20and%20VBT.docx?api=v2
+https://proactionus.ent.cgi.com/confluence/display/APS/Deployment+Reports
+
+https://www.sivalabs.in/
+
+
+URL of sharepoint:- https://groupecgi-my.sharepoint.com/
+
+
+fV+rC38qL=E945q4 --> Nikhil@012022reddy --Laptop
+
+HDFC -- Nikhil@022022
+
+Gmail -- Puttana@031982
+
+SBI Account -- 20139589475 subbanarasa/Nikhil@042022  Profile -- Nikhil@072022
+
+ICICI DIRECT -- SUBFEQ5A/Nikhil@072022
+
+Amazon -- subbanarasareddy@yahoo.com/Nikhil@072022
+
+
+VM IPaddress is changed. I made it static IP now. Can you please connect to the Azure VM and let me know.
+VM: VM1EUAPS
+UN: vm1euaps
+PWD: Feb@X10uj20225
+IP Address: 20.207.207.202
+
+
+APSMNT-3547
+
+
+
+[12:24 PM] Mutyala, Sri Ramya
+Static data load:Testing Repo branch - origin/release/NBC
+APS branch - your branch
+Env Name - your fb env
+Cluster - Orbit
+Parameters_pabot: --processes 1
+Parameters_robot: --include NBC_MTI_SETUP_CI product/setup_nbc.robot
+
+[12:24 PM] Mutyala, Sri Ramya
+Sanity:Parameters_pabot: --processes 7 --testlevelsplit
+Parameters_robot: --include MTIANDMTANDSANITYANDREADYORDULOANDMTANDSANITYANDREADY --exclude REGBUGORDEFECTOROBSOLETE --exclude NOTREADY product/SWIFT/ui_nbc*.robot
+
+
+travis.miller@philips.com
+
+
+set KUBECONFIG=C:/Users/subbanarasa.puttana/Documents/Projects/code/APS/deployment/Kubernetes/kubeconfig/lab.config
+
+
+C:/Users/subbanarasa.puttana/Documents/Projects/code/APS/deployment/Kubernetes/kubeconfig/lab.config
+
+export BUILD_SCRIPTS_ROOT=C:/Users/subbanarasa.puttana/Documents/Projects/code/APS/deployment
+
+
+C:/Users/subbanarasa.puttana/Documents/Projects/code/APS/deployment/
+
+
+
+https://grafana.com/go/webinar/getting-started-with-logging-with-loki-apac/?src=zoom&mdm=chat&utm_source=live+webinar+chat
+
+
+https://grafana.com/go/webinar/getting-started-with-grafana-apac/
+https://www.linkedin.com/in/subbanarasareddy/
+
+oradb19-demo: 32742, 31240
+oradb19-rtest: 32149, 30241
+oradb19-dev: 30410, 32042
+
+APS/APS@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=ingress.orbit.cgiallpayments.cloud)(PORT=30410))(ADDRESS=(PROTOCOL=TCP)(HOST=ingress.orbit.cgiallpayments.cloud)(PORT=32042)))(CONNECT_DATA=(service_name=paymts_5809_non_blockin_APS)))
+
+
+
+
+
+
+
+
+
+confluent cloud is actually using let's encrypt CA
+
+I've imported these certs into JKS truststore
+
+
+
+# openssl s_client -connect lkc-661k2-ew7rw.ca-central-1.aws.glb.confluent.cloud:9092 2>/dev/null </dev/null
+
+root@kafka-broker0-6f948f79cc-fpbzx:/# openssl s_client -connect lkc-661k2-ew7rw.ca-central-1.aws.glb.confluent.cloud:9092 2>/dev/null </dev/null
+CONNECTED(00000003)
+---
+Certificate chain
+ 0 s:CN = *.ca-central-1.aws.confluent.cloud
+   i:C = US, O = Let's Encrypt, CN = R3
+ 1 s:C = US, O = Let's Encrypt, CN = R3
+   i:C = US, O = Internet Security Research Group, CN = ISRG Root X1
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIFczCCBFugAwIBAgISBJcL+obMovF3GBusuwLJCLSSMA0GCSqGSIb3DQEBCwUA
+MDIxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MQswCQYDVQQD
+EwJSMzAeFw0yMjA0MTQxNzMwNTVaFw0yMjA3MTMxNzMwNTRaMC0xKzApBgNVBAMM
+IiouY2EtY2VudHJhbC0xLmF3cy5jb25mbHVlbnQuY2xvdWQwggEiMA0GCSqGSIb3
+DQEBAQUAA4IBDwAwggEKAoIBAQDjj16IymcsqD4aQD9VQaNdTqSx5IoAWnoXh7Vh
+ui1Ldq3j9W8FudkzQhIb9MRen+oLUpzGVu/e94jaQCoj77zlkLCoRlYO/WJU+byN
+4P62PCVuRIUkLL1PDdajAT/pDcajnEvL2T8BNp2Vw/urhzIl3lR8SVVjxs/pU9U4
+VDeVmyyP9BvYDFbaqKuAZxC37I1eP29OUaSLSwvldv6t+hgZMIKHsocdG4WtXeuv
+4JDDperBTbAeCXCViWX0tTi6X3Tc40OGW3xhJh20RTRoW5xioWwYRmHq9fke/hp0
+Dm5XeTComekQTKpQG4dO9+8B+WykV5jroEzWlge9mbuGKM7jAgMBAAGjggKGMIIC
+gjAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMC
+MAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFNZyvq0ILAOiNQxzJ79sex0C9d6iMB8G
+A1UdIwQYMBaAFBQusxe3WFbLrlAJQOYfr52LFMLGMFUGCCsGAQUFBwEBBEkwRzAh
+BggrBgEFBQcwAYYVaHR0cDovL3IzLm8ubGVuY3Iub3JnMCIGCCsGAQUFBzAChhZo
+dHRwOi8vcjMuaS5sZW5jci5vcmcvMFUGA1UdEQROMEyCIiouY2EtY2VudHJhbC0x
+LmF3cy5jb25mbHVlbnQuY2xvdWSCJiouY2EtY2VudHJhbC0xLmF3cy5nbGIuY29u
+Zmx1ZW50LmNsb3VkMEwGA1UdIARFMEMwCAYGZ4EMAQIBMDcGCysGAQQBgt8TAQEB
+MCgwJgYIKwYBBQUHAgEWGmh0dHA6Ly9jcHMubGV0c2VuY3J5cHQub3JnMIIBBQYK
+KwYBBAHWeQIEAgSB9gSB8wDxAHYARqVV63X6kSAwtaKJafTzfREsQXS+/Um4havy
+/HD+bUcAAAGAKVe3kQAABAMARzBFAiEA6sRwWZRkufN0De1V7TcB0wd1Cpf3idQA
+zAS6AO2rkhECIE6v1ZXTJjCeeaXHEXXJ+IFMCldQ4AVqvb+PtmELdDfcAHcAb1N2
+rDHwMRnYmQCkURX/dxUcEdkCwQApBo2yCJo32RMAAAGAKVe4sgAABAMASDBGAiEA
+7Twx4hjcLjiOU58/vV+ZpikFEGuemLUS25vCB/2NNdUCIQCX2+hNVPkTvI93Hsrp
+G1rHwbwGA4+Vgu6fzfMsnXQHcTANBgkqhkiG9w0BAQsFAAOCAQEAYIAX0472o2nC
+nVmGTW4kpKKLWZN0ILgY2ZkQrYPVupzi2jnqLmxAXxLj68GXQBHkQ0qGtwcYzVPU
+Xl98b/yyQdYI7Hb1v0a23Dam+NtUs6l910dDFTD19htRsCIvgiVcJOzF79uW/ulw
+VhM2kX0fyJOHk/qSwPHlupyZ2bmFpAY4iZgegiW0IEb/QiIH3zJr4eZViMidfaBn
+z05/OHUqOLO9YCJX9dGNd3L40YuP5D/c2KAlBMgzH7GsPc/USvfAt75Gv5Tf1ZFi
+C5bb1qVTLF+Q05kKZUhYHtH2KUc2i/5z682yVBbiHrLP1xkOzHxXGfBvaUcN/jGq
+0syiyf8Qfw==
+-----END CERTIFICATE-----
+subject=CN = *.ca-central-1.aws.confluent.cloud
+
+issuer=C = US, O = Let's Encrypt, CN = R3
+
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA-PSS
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 3188 bytes and written 437 bytes
+Verification: OK
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES128-GCM-SHA256
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES128-GCM-SHA256
+    Session-ID: 0C3417C2ABAD5E68719D64B1D529AD76A5A32CE0D0224E951111AEBF13DD7014
+    Session-ID-ctx: 
+    Master-Key: 140AE2BC5F701D25938978D86739C9EB906818F07FD0C031C98FF0C558209083ED7D5F22E3B07CA6F6AB3C0FF9021049
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    Start Time: 1653654637
+    Timeout   : 7200 (sec)
+    Verify return code: 0 (ok)
+    Extended master secret: yes
+---
+
+
+wget https://letsencrypt.org/certs/lets-encrypt-r3.pem 
+wget https://letsencrypt.org/certs/isrgrootx1.pem 
+
+keytool -import -noprompt -trustcacerts -file lets-encrypt-r3.pem -alias letsencrypt-r3 -keystore /tmp/nbctrust.jks -storepass abcd1234 -validity 365
+keytool -import -noprompt -trustcacerts -file isrgrootx1.pem -alias letsencrypt-root -keystore /tmp/nbctrust.jks -storepass abcd1234 -validity 365
+
+
+
+==================
+
+select count(1) from aps.TP_IO_FILE where PO_ID IS NULL and pu_id = (select id from aps.tp_proc_path where name ='I_SYS_HQ_ACCUITY' and enabled = 'Y')
+
+
+=========================
+
+
+
+
+
+
+f Form 16 is not received by end of June
+members needs to send a mail from your personal mail id to inpayroll@cgi.com with
+your Emp no. Name, PAN and date of leaving. Form 16 will be sent within a weeks’
+time
+
+RDP -- Nikhil@082022reddy
+

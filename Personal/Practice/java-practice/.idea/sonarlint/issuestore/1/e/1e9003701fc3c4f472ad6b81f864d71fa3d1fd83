@@ -1,0 +1,9 @@
+
+@
+java:S1172"*Remove this unused method parameter "str".(„æƒ
+Q	java:S125
+"<This block of commented-out lines of code should be removed.(„¬é‰
+S	java:S106"9Replace this use of System.out or System.err by a logger.(Ìà±øùÿÿÿÿ
+E
+java:S1172"*Remove this unused method parameter "str".(ø¯¥óùÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(Ù‡Ï­ùÿÿÿÿ

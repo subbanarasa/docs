@@ -1,0 +1,9 @@
+https://github.com/hazelcast-guides
+https://www.youtube.com/watch?v=cN8-4_Eka9A
+
+https://www.baeldung.com/java-hazelcast
+
+https://github.com/eugenp/tutorials/tree/master/hazelcast
+
+
+NBC_7.2.3.1

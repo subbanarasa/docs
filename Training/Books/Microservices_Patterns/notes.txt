@@ -1,0 +1,164 @@
+https://livebook.manning.com/book/microservices-patterns/table-of-contents/
+
+https://github.com/microservices-patterns/ftgo-application
+ 
+https://forums.manning.com/forums/microservices-patterns
+ 
+http://microservices.io.
+
+
+
+
+Drwabacks of Monolithic: 
+
+1. Obstracle to frequent deployment.
+2. Scalling the application can be challenging -- CPU/Memory/IO
+3. Overloads Your IDE and container. -- Developer waste time. 
+4. Requires lot of coordination. 
+5. Requires long-term technical stack commitment. 
+6.
+
+
+Apply functional decomposition:
+==============================
+
+The scale cube defines three separate ways to scale an application: X-axis scaling load balances requests across multiple, identical instances; Z-axis scaling routes requests based on an attribute of the request; Y-axis functionally decomposes an application into services:
+
+
+Benefits of the Microservice Architecture
+ The microservice architecture has the following benefits:
+    Easier to develop and understand
+	Less Jar/Classpath hell -- who needs OSGI ?
+	Faster to build and deploy
+	Reduced startup time
+	Scales development/scale/deploy
+	It improves fault isolation
+	Eliminates long term commitement to a single technical stack. 
+	Easily try other technologies
+	
+	
+	It enables the continuous delivery and deployment of large, complex applications.
+	Services are small and easily maintained.
+	Services are independently deployable.
+	Services are independently scalable.
+	The microservice architecture enables teams to be autonomous.
+	It allows easy experimenting and adoption of new technologies.
+	
+
+Drawbacks of the Microservice Architecture:
+
+	Complexity
+	Multiple Databases and Transaction management. 
+	Complexity of Testing in distribution management 
+	Complexity of deploying and operating a distrubuited system. 
+	Developing features that span multiple services requires careful coordination.
+	Deciding when to adopt the microservice architecture is difficult.
+	
+	Finding the right set of services is challenging.
+	Distributed systems are complex, which makes development, testing, and deployment difficult.
+	Deploying features that span multiple services requires careful coordination.
+	
+	
+	
+Autonomy --- 
+Autoscalling -- what happens when we grow ?
+
+
+
+The software architecture of a computing system is the set of structures needed to reason about the system, which comprise software elements, relations among them, and properties of both.
+
+Documenting Software Architectures by Bass et al.
+
+
+
+Partitioning Strategies Event Driven Microservices:
+==================================================
+1. Partion by noun. Catelog services
+2. Partion by Verb -- Checkout UI
+3. Partion by subdomain. 
+4. Single Responsibility Principle. 
+5. Unix utils -- do one focused thing well
+
+
+How Many services ?
+
+Deployment Patters:
+===================
+
+Why ?
+
+Different language and frameworks. 
+Each Service consists of multiple instances. 
+Building and Deploying services must be fast
+Services deployed and scalled independently
+Services instances need to be isolated. 
+Resources consumed by services to be contrained. 
+Deployment must be reliable.
+Deployment should be cost effective. 
+
+
+1. Multiple service instances per host  -- Poor isolation, Dis - one instance can take all resources
+2. Service for VM --Service as Image like AMI in EC2. Ex: Netflix -- 600 service Adv: Good Isoaltion , Encaptulate Tech and Great managability 
+3. Service per container. 
+
+Communication Patterns:
+=======================
+Client to service and b/w services.
+
+1. API Gateway  -- Amazon product page to get data from different service.  -- Dis - It has to be HA and one hop
+2. Style of messaging (sync/async) --API first approach.  Text: Json XML , Binary: ProtoBuf, Avro
+		circuit breaker pattern -- hytrix
+3. Discovery service
+    client side -- 
+	server side -- via router  Ex: ELB and Nginx
+	Registry. --Eureka, Zookeeper
+
+
+Cross-cutting concerns:
+=======================
+1. Externalize configuration
+2. Logging
+3. Service discovery
+4. Metrics
+5. Circuit breakers. 
+6. Health checks
+
+
+Data management
+===================
+1. Shared DB
+2. DB per service 
+    private table
+	private schema
+	private db
+Maintain invarients -- Check cust limit before placing order but customer limit is in different service
+
+Event Driven solves this 
+
+Event Store --> Consumer
+
+
+
+Strategies: 
+
+1. Avoid Big bang and go incrementally
+2. New Functionality as service. 
+3. split frontend and backend.
+4. Extract service -- Module --> Service which changes more frequent and requires scalling
+5. 
+
+
+References: 
+
+https://netflixtechblog.com/
+http://highscalability.com/amazon-architecture
+Ebay
+SoundCloud
+Yelp
+Uber
+
+Art of Scalability --Book
+
+Domain Driven Design --Book
+
+https://www.nginx.com/blog/introduction-to-microservices/

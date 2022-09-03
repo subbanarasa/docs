@@ -1,0 +1,138 @@
+Part-1
+==========
+1. Getting started with Spring:
+==============================
+Java-based configuration offers several benefits over XML-based configuration, including greater type safety and improved refactorability.
+
+mvnw and mvnw.cmd—These are Maven wrapper scripts. You can use these scripts to build your project even if you don’t have Maven installed on your machine.
+
+@SpringBootApplication is a composite application that combines three other
+annotations:
+	@SpringBootConfiguration—Designates this class as a configuration class.This annotation is, in fact, a specialized form of the @Configuration annotation.
+	@EnableAutoConfiguration—Enables Spring Boot automatic configuration.For now, know that this annotation tells Spring Boot to automatically configure any components that it thinks 
+	@ComponentScan—Enables component scanning. This lets you declare other classes with annotations like @Component,@Controller,@Service, and others,to have Spring automatically discover them and register them as components in the Spring application context.
+	
+The main() method calls a static run() method on the SpringApplication class,which performs the actual bootstrapping of the application, creating the Spring application context.
+
+Instead of @SpringBootTest markup, HomeControllerTest is annotated with @WebMvcTest. This is a special test annotation provided by Spring Boot that arranges for the test to run in the context of a Spring MVC application.
+
+Although you’re explicitly setting server.port to 0, the server won’t start on port 0. Instead, it’ll start on a randomly chosen available port.
+
+
+By default, Spring Boot configures logging via Logback (http://logback.qos.ch) to write to the console at an INFO level. You’ve probably already seen plenty of INFOlevel entries in the application logs as you’ve run the application and other examples
+
+When setting properties, you aren’t limited to declaring their values as hard-coded String and numeric values. Instead, you can derive their values from other configuration properties. To achieve this, you could use the ${} placeholder
+
+
+2. Developing web applications
+==============================
+
+@GetMapping is a relatively new annotation, having been introduced in Spring 4.3.Prior to Spring 4.3, you might have used a method-level @RequestMapping annotation instead:@RequestMapping(method=RequestMethod.GET)
+
+The @Valid annotation tells Spring MVC to perform validation on the submitted Taco object after it’s bound to the submitted form data and before the processDesign()method is called.
+
+3. Working with data
+==========================
+
+
+
+
+
+5. Working with configuration properties:
+=========================================
+
+The Spring environment pulls from several property sources, including
+	 JVM system properties
+	 Operating system environment variables
+	 Command-line arguments
+	 Application property configuration files
+	
+
+The DataSource bean will be pooled using Tomcat’s JDBC connection pool if it’s available on the classpath. If not, Spring Boot looks for and uses one of these other connection pool implementations on the classpath:
+	 HikariCP
+	 Commons DBCP 2
+	
+	
+Integrated Spring
+
+6. Creating REST services:
+==========================
+@RestController annotation tells Spring that all handler methods in the controller should have their return value written directly to the body of the response, rather than being carried in the model to a view for rendering.
+
+@CrossOrigin allows clients from any domain to consume the API.
+
+In that sense, PUT is really intended to perform a wholesale replacement operation rather than an update operation. In contrast, the purpose of HTTP PATCH is to perform a patch or partial update of resource data
+
+deleteOrder() method is that it’s annotated with @ResponseStatus to ensure that the response’s HTTP status is 204 (NO CONTENT).	
+
+The Spring HATEOAS project brings hyperlink support to Spring. It offers a set of classes and resource assemblers that can be used to add links to resources before returning them from a Spring MVC controller.
+
+
+
+Part-3 Reactive Spring:
+======================
+
+As we develop application code, there are two styles of code we can write: imperative
+and reactive
+
+Java Streams vs. Reactive Streams: 
+
+Java Streams, however, are typically synchronous and work with a finite set of data.
+They’re essentially a means of iterating over a collection with functions.
+
+Reactive Streams support asynchronous processing of datasets of any size, including
+infinite datasets. They process data in real time, as it becomes available, with back
+pressure to avoid overwhelming their consumers.
+
+The Reactive Streams specification can be summed up by four interface definitions:
+Publisher, Subscriber, Subscription, and Processor.
+
+
+A Flux represents a pipeline of zero, one, or many (potentially infinite) data items. 
+A Mono is a specialized reactive type that’s optimized for when the dataset is known to have no more than one data item.
+
+
+map() is that the mapping is performed synchronously,as each item is published by the source Flux. If you want to perform the mapping asynchronously, you should consider the flatMap() operation.
+
+
+Cloud-native Spring:
+
+Discovering services:
+===========================
+Monolithic applications are deceptively simple, but they present a few challenges:
+
+ Monoliths are difficult to reason about—The bigger the codebase gets, the harder it is to comprehend each component’s role in the whole application.
+ Monoliths are more difficult to test—As the application grows, comprehensive integration and acceptance testing gets more complicated.
+ Monoliths are more prone to library conflicts—One feature may require a dependency that’s incompatible with the dependency required by another.
+ Monoliths scale inefficiently—If you need to deploy the application to more hardware for scaling purposes, you must deploy the entire application to more servers—even if it’s only a small fraction of the application that requires scaling.
+ Technology decisions for a monolith are made for the entire monolith—When you choose a language, runtime platform, framework, or library for your application, you choose it for the entire application, even if the choice is made to only support a single use case.
+ Monoliths require a great deal of ceremony to get to production—It would seem that when an application has only a single deployment unit, it would be easier to get into production.In reality, however, the size and complexity of monolithic applications generally require a more rigid development process and a more
+thorough testing cycle to ensure that what’s deployed is of high quality and doesn’t introduce bugs.
+
+
+
+============================================================================
+Deployed Spring
+============================================================================
+16. Spring Boot Actuator
+
+Using endpoints exposed by Actuator, we can ask things about the internal state of a running Spring Boot application
+
+The Actuator prefix path can be changed by setting the management.endpoint .web.base-path property.
+
+To get some idea of what endpoints Actuator has to offer, a GET request to Actuator’s base path will provide HATEOAS links for each of the endpoints.
+
+http://localhost:8080/actuator/health
+http://localhost:8080/actuator/info
+http://localhost:8080/actuator/beans
+http://localhost:8080/actuator/conditions
+http://localhost:8080/actuator/env
+http://localhost:8080/actuator/mappings  -- to get comelete end points
+http://localhost:8080/actuator/loggers  -- to set the loglevel
+
+curl localhost:8081/actuator/loggers/tacos/ingredients -d'{"configuredLevel":"DEBUG"}' -H"Content-type: application/json"
+
+http://localhost:8080/actuator/metrics
+http://localhost:8080/actuator/metrics/http.server.requests
+
+=============================================================================

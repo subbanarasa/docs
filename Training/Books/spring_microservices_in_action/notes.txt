@@ -1,0 +1,9 @@
+Why change the way we build applications like microservice ? 
+
+1. Complexity has gone way up -- means not to have single database for complete application.
+2. Customers want faster delivery
+3. Performance and scalability
+4. Customers expect their application to be available
+
+Small, Simple, and Decoupled Services = Scalable, Resilient, and Flexible Applications
+

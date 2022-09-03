@@ -1,0 +1,74 @@
+Core Java:
+==========
+1. When concurent modification exception occurs ? How to avoid this ?
+2. Explain difference b/w Aggregation and composition ? 
+3. When Deadlock occurs ? How can avoid this ?
+4. What is the functional interface ?
+5. What is Lambda function? what is Streams?  
+6. Employee Object How to do Group by Salary , departyment in java 8 ?
+7. Can we override the static method in Java?
+8. What is SerialVersionUID in Java? Why it’s important?
+
+
+Spring Boot:
+============
+1. How Spring boot works internally ? what are different features includes with @SpringBootApplication ?
+2. What is the Inversion of Control concept, how does Spring support IOC?  
+3. Can you describe the lifecycle of a Spring Bean in an ApplicationContext?
+3. Tell me about some Annotation is used ? Difference b/w @Component, @Service and @Respository ? 
+4. How to create spring boot project ? How to change server port and server tomcat -> other ? 
+5. How do we configure schedulers in spring boot ?
+6. What is the swagger?
+7. What is the @ControllerAdvice ?
+8. What is CORS ? 
+9. What is the difference between @Autowired and @Inject annotation in Spring?
+10.
+
+
+MicroServices:
+==============
+1. Difference b/w API's and Events? Can they coexist ?
+2. How to enable logs in microservice dynamically?
+3. Even Driven Pattern and Orchestraction pattern ? 
+4. Difference b/w SOA and microservice ?  
+5. What are Idempotent and Safe methods of HTTP ?
+
+
+
+Hibernate and Spring Data JPA:
+==============================
+1. How to call native sql queries spring JPA ?
+2. What is difference b/w persist(), save(), merge() and update() ?
+3. What is difference b/w get() and load() methods 
+4. What are the states of the object in hibernate?
+5. What is first level and second level Cache ?
+
+Junit and Mockito:
+==================
+1. How to Mock void method ?
+2. How are you going to create an ApplicationContext in an integration test?
+3. injectMocks ?
+
+
+Database:
+========
+1. Difference b/w SQL and NoSQL? 
+2. How to remove duplicate rows from the table ? 
+3. How to find the second maximum value from the table ? 
+4. Explain ACID Properties ? 
+
+
+Kafka:
+======
+1. Rabbit MQ vs Kafka ? 
+2. 
+
+Docker and K8s:
+===============
+
+
+
+Coding:
+======
+1. Write a program to identify two strings are Anagram (binary/brainy) without buildin functions?
+2. aaSONYbb ---> is SONY string is middle or not ?

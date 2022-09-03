@@ -1,0 +1,9 @@
+https://github.com/datastaxdevs/docker-learning-path/tree/master/week-1
+https://github.com/datastaxdevs/docker-learning-path/tree/master/week-2
+
+Remove All containers:
+
+docker ps -qa | xargs docker rm
+
+
+https://labs.play-with-docker.com/

@@ -1,0 +1,11 @@
+
+r
+java:S1450"WRemove the "employee" field and declare it as a local variable in the relevant methods.(‡¾Ì¯üÿÿÿÿ
+r
+java:S3077"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(‡¾Ì¯üÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(æâÊ’úÿÿÿÿ
+Q	java:S125;"<This block of commented-out lines of code should be removed.(Á»›ê
+D
+java:S1128".Remove this unused import 'java.util.Objects'.(¼¸õ›
+G
+java:S1068",Remove this unused "employee" private field.(‡¾Ì¯üÿÿÿÿ

@@ -1,0 +1,22 @@
+
+=
+java:S1604
+"(Make this anonymous inner class a lambda(£·®
+>
+java:S1604"(Make this anonymous inner class a lambda(ÿïÞß
+2
+java:S1116"Remove this empty statement.(„÷ßÂ
+t
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+N	java:S106*"9Replace this use of System.out or System.err by a logger.(©§±±
+t
+java:S2142."^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+S	java:S1062"9Replace this use of System.out or System.err by a logger.(·ùßóýÿÿÿÿ
+K
+java:S24466"0"notify" may not wake up the appropriate thread.(óÄ£¶øÿÿÿÿ
+N	java:S106B"9Replace this use of System.out or System.err by a logger.(¢Ð·Ú
+t
+java:S2142F"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+S	java:S106J"9Replace this use of System.out or System.err by a logger.(·ùßóýÿÿÿÿ
+K
+java:S2446M"0"notify" may not wake up the appropriate thread.(óÄ£¶øÿÿÿÿ
