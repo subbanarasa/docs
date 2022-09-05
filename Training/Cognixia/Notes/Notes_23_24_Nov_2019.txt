@@ -1,0 +1,136 @@
+23/11/2019:
+=============================
+AMI::
+==================
+1. AMI(Amazon Machine Image) -- It is Operating system Template. 
+2. AMI can be shared to other account for the same regions. 
+3. Create an AMI from a running instance
+	Creating a Virtual Machine (Instance) using Linux
+	Configure this machine as a web server or any other configuration you require.
+	Verification:Test your machine
+	Using this running VM/Instance, create AMI.
+	I want to share this AMI among you people
+	And you can use the same ami to lauch a VM 
+
+
+4. Practice LAB: How to move an EC2 instance from one region to another region
+	Step1: Create AMI using the EC2 Instance
+	Step2: Copy the AMI from one region to another region
+	Step3: Using transferred AMI, create EC2 Instance.
+
+Httpd enable:
+
+ rpm -q httpd
+ yum update
+ yum install httpd
+ rpm -q httpd
+ service httpd status
+ service httpd start
+ chkconfig httpd on
+ cd /var/www/html/
+ pwd
+ ls -l
+ vim index.html
+ ls -l
+ 
+ =========================================
+  Security Groups: 
+ =================================================
+ Maximum 5 security groups can be associated to EC2. 
+ 
+ By default all Inbound traffic is blcoked and allowed all outbound traffic.
+ 
+ Security Group
+	Inbound Rule
+		By default all traffic is denied for Inbound
+	Outbound Rule
+		By default all traffic is allowed for Outbound 
+
+======================================================================
+  EC2 Key Pairs:
+ ==================================
+	Public Key à to encrypt the information (password)
+	Private Key à to decrypt the encrypted information
+	2048 bit key and SSH-2 RSA Algorithm
+	5000 keys pair per region
+	key is in .pem format
+ 
+ 
+ 
+==========================
+N/W Interfaces.
+==============================
+NFS: 111 (TCP and UDP), 2049 (TCP and UDP) (Port 1110 TCP for the former, and 1110 UDP for the latter) as well as a port for the NFS lock manager (Port 4045 TCP and UDP).
+HTTP: 80, 8080, 
+HTTPS: 443
+SMTP: 25 or 587(TLS)/465 (SSL)
+POP3: 110 (Auth)/995(SSL)
+IMAP: 143(TLS)/993 (SSL)
+FTP: 20/21
+Kerberos: 88
+SSH: 22
+RDP: 3389
+TFTP: 69
+DNS: 53
+
+
+Private IP: To communicate Intenally (Within VPC)
+Public Ip: To access over Internet. 
+
+Elastic IP -- Static IP or Fixed IP and Max EIP for Region. 
+
+ICMP should be allowed to work PING.
+
++++++++++++++++++++++++++++++++++++++++++++++++
+
+24/11/2019
+
+===============================================
+EBS Volume
+==========================
+Elastic Block Store
+
+EBS volume and EC2 instance should be in same Availability Zone. 
+
+
+Sanpshot --- Snapshot will be stored in S3 space. 
+
+Recover EBS volume from snapshot
+
+Using snapshot you can create an AMI for the machine 
+
+================================
+Instance Meta Data
+===================
+
+curl http://169.254.169.254/latest/meta-data
+
+ami-02913db388613c3e1[ec2-user@ip-172-31-12-18 ~]$ curl http://169.254.169.254/latest/meta-data/public-ipv4
+13.127.112.203[ec2-user@ip-172-31-12-18 ~]$
+
+===========================
+DNS Name:
+=======================
+
+
+===================
+Bootsraping
+===========
+
+#!/bin/bash
+sudo su -
+yum update -y
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+echo  “My bootstrapped virtual machine is ready” > /var/www/html/index.html
+====================
+Bastion Host
+=====================
+Bastion hosts (also called “jump servers”) are often used as a best practice for accessing privately accessible hosts within a system environment
+
+
+
+
+
+

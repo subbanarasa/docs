@@ -1,0 +1,27 @@
+Can we use Kafka stream in other languages, say Rust?
+
+There are native-APIs in a number of languages. For languages without a native client, see section in this presentation on using the REST API. See also https://www.confluent.io/blog/getting-started-with-rust-and-kafka/
+
+When to use RAW topics (ie., without Schema) and when to use topics with Schema? Any best practice recommendation?
+
+If you want to maintain a contract between producers and consumers on the format of messages, and especially if you want to be able to independently version that schema over time, you should apply a schema and use Schema Registry.
+
+Does Kafka messages have a size limitation? if yes, what is it?
+
+It is configurable. The default value is 1MB.
+
+Can Kafka Connect perform some kind of data transformation through configuration?
+
+Yes. Configuration known as Single Message Transforms (SMTs) can do this. Further processing can be done in KSQL or KStreams.
+
+Can you share the link to the blog post about the exactly once semantics?
+
+I like this one: https://www.confluent.io/blog/transactions-apache-kafka/ . This is also good: https://www.confluent.io/blog/exactly-once-semantics-are-possible-heres-how-apache-kafka-does-it/
+
+Does producer and consumer client communicate with zookeeper or broker directly?
+
+Kafka broker yes, unless you are using the Confluent REST Proxy. ZooKeeper no - and the number of tools which access ZooKeeper is on the decline as part of KIP-500 efforts.
+
+Can you please share documentation on creating our own SMT?
+
+Custom SMTs getting-started documentation: https://docs.confluent.io/current/connect/transforms/custom.htm

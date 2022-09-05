@@ -1,0 +1,301 @@
+16/12/2019
+============================================
+What is plunk ?  --- Splunk is a software platform to search, analyze and visualize the machine-generated data gathered from the websites, applications, sensors, devices etc. which make up your IT infrastructure and business.
+
+Provides -- Search, Alert, Report and Share. 
+
+Splunk componenets:
+===================
+1. Universal Forwarder (UF) ---It is light instance of splunk and it forwards data from one end to other. It is CLI interface.  It forwards data to HF (port -9997). 
+2. Heavy Forwarder (HF)--CLI+GUI+parsing+filtering.
+3. Indexer (IDX) --- store and categorization.  
+		meta data:
+		-------------------
+		host name or ip of appserver
+		source - actual path of data
+		source type -- logical seggregation of data.
+		
+4. Search Head (SH) --it sends request to Indexer to get data. 
+5. Deployment Server (DS) --handles config file.
+6. Licence Master (LM)
+
+9997--  forwarding and receiving port and index 
+8089 -- Splunk Management port (mgmt)
+8000 -- Web port
+
+Default Index is main and _internal for the configurations. 
+
+===============================
+
+Can HF install in Application ? Yes but we don't prefer to overload our application. 
+
+If Indexer is down ? Data will be in paused and will do index later.  Can't search the data ?
+
+
+========================================== 17/12/2019
+
+http://localhost:8000/en-US/app/search/search
+
+admin/admin@1234  
+
+search health or post --- to get the events which is having the health or post values.
+
+
+index=_internal sourcetype=splunkd_ui_access | table method,status,bytes | dedup method,status,bytes | search method = *T AND bytes = 3* 
+
+index="_internal" | table host source method | dedup host source | rename host as server ,source as "log location" | replace "GET" with FETCH
+
+Table command to display fields as a table
+dedup is to remove duplicates. 
+
+rename is to dispaly name of the field.  | rename method as 
+
+replace is to replace the value Ex: replace GET WITH "SUBBA" 
+
+
+head command shows the first results.  default is 10  Ex: index=_internal sourcetype=splunkd_ui_access | table file | dedup file | head 5
+
+tail command shows last results (Last record in the first) Ex: index=_internal sourcetype=splunkd_ui_access | table file | dedup file | tail 2 
+
+reverse command just reverse the results.
+
+top command will give you the max occurence of the field value. --It is transformation command and it is used for visualization. 
+
+
+index=_internal sourcetype=splunkd_ui_access | top method showcount=false  ---- showcount , showper attributes to control the show or hide. 
+
+index=_internal sourcetype=splunkd_ui_access | top  limit=5 method --- to limit the results. 
+
+
+rare command give least occurence. 
+
+index=_internal sourcetype=splunkd_ui_access | rare  method
+
+===========Excercise=====================================
+
+how to see infinite number of rows with the top command? index=_internal sourcetype=splunkd_ui_access | top limit=0  file 
+
+Ans:: === with limit=0
+
+
+How to see 3rd,4th and 5th row from the result? index=_internal sourcetype=splunkd_ui_access | table  method, status | dedup method, status   
+
+Ans: head 5 | tail 3 
+
+
+Why fields command is faster than the table command?  index=_internal sourcetype=splunkd_ui_access | fields  method, status | table method, status. 
+
+Ans:: Fields is gives set of the data on top it table applied so it is faster. 
+
+=============================================================================== 18/12/2019
+
+
+ stats count --> number of incomming events. Ex::  index=_internal sourcetype=splunkd_ui_access | top  file | stats count
+ 
+ index=_internal sourcetype=splunkd_ui_access |stats count by root | sort - count   --- Count by root then sort it count. 
+
+index=_internal sourcetype=splunkd_ui_access |stats avg(status) as status by method -- to get group by method name. 
+
+stat max(status) as maximum -- to get maximum value
+
+stat dc(status) as distinct -- to get Distinct value.  
+
+After applying stats command no need to put dedup command. 
+
+
+index=_internal sourcetype=splunkd_ui_access | timechart count  --- To see the graphs
+
+index=_internal sourcetype=splunkd_ui_access | timechart span=1h count  === span uses the interal b/w events
+
+index=_internal sourcetype=splunkd_ui_access | timechart avg(status) by method | fillnull  -- to fill the null values with 0
+
+addcoltotals ---to show coloumns totals.
+
+eval status_val=round(status)
+
+| eval "New Field"=if(con,value,else)
+
+| eval "New Field"=if(con1,val1,if(con2,val2,else)) 
+
+
+===============================================================================================
+
+
+index=_internal sourcetype=splunkd_ui_access | timechart count by file limit=0 ? 
+
+
+index=_internal sourcetype=splunkd_ui_access | timechart count by file
+
+
+
+index=_internal sourcetype=splunkd_ui_access | stats count by method,status | rename method as item,status as product_cost, count as service_cost | addcoltotals labelfield=item label=Total_Cost 
+
+
+
+?????????
+
+index=_internal sourcetype=splunkd_ui_access | timechart count by file
+What is the meaning of NULL and OTHER field in timechart  command ?  -- top 10 fields it shows and remaining with go to OTHER (Least count values to OTHER). 
+How to remove those fields in timechart command?
+
+
+index=_internal sourcetype=splunkd_ui_access | timechart count by file usenull=f useother=f
+
+
+=========================================================
+
+========Field Extraction======= 19/12/2019
+
+
+1. Index time field extraction -- HF
+2. Search time field extraction -- (IDX/SH)
+		IFX --Interact field extractor
+		REGEX --Regular expression extractor. 
+
+	
+	https://splunkonbigdata.com/
+	
+	
+
+===========================20/12/2019===================
+
+       * * * * *
+    
+    Minutes Of an hour ( 0 -59 )
+      Hour Of a day ( 0 -23 )
+     Day of a month (1-31)
+        Month Of a year ( 1-12)
+       Day of a week ( 0-7)
+    
+    0,7 - Sun
+    1 - mon
+    2 -tue
+    3- wed
+    4 - thu
+    5 - fri
+    6 - sat
+
+
+
+
+2:20 PM
+
+Mahadevaiah, Harish K
+
+can you copy and paste in chat
+
+
+
+
+2:27 PM
+
+Me
+
+0 7 15 * *
+
+
+
+
+2:27 PM
+
+Me
+
+0 7 15 8 *
+
+
+
+
+2:28 PM
+
+Me
+
+0 0 25 1,12 *
+
+
+
+
+2:29 PM
+
+Me
+
+okie ?
+
+
+
+
+2:29 PM
+
+Mahadevaiah, Harish K
+
+0 0 25 12 *
+
+
+
+
+2:29 PM
+
+Mallikarjuna
+
+0 12 12,25 1,25 *
+
+
+
+
+2:31 PM
+
+Mallikarjuna
+
+Dec and Jan 25th
+
+
+
+
+2:31 PM
+
+Gopidi, Kishta Reddy
+
+0122512,1*
+
+
+
+
+2:38 PM
+
+Ayan Maity
+
+
+     25 * * * *
+     25,45 * * *
+     */5 * * * *
+  */30 * * * *
+  ----------------------------------
+  30 23 * * *
+     0  * * * *
+     0  */2 * * *
+     0 7,19 * * *
+  --------------------------------
+  
+     0 11 28 * * *
+  0 0 */15 * * 
+  0 10 1,28 * *
+  --------------------------------
+  0 7 15 8 *
+  
+  night 12 , 25 th dec and jan
+  
+  0 0 25 1,12 *
+  0 0 25 12,1 * 
+  
+  0 12 12,25 1,25 *  ---- 
+  
+  -----------------------------
+  
+  0 7 * * 0,1,2
+  
+ 0 7 * 12 5
+ 
+ -----------------------------------------------
+
+
+
+

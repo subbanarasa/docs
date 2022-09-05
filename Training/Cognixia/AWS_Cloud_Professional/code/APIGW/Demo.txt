@@ -1,0 +1,21 @@
+https://www.freecodecamp.org/news/real-time-applications-using-websockets-with-aws-api-gateway-and-lambda-a5bb493e9452/
+
+WebSocket URL: wss://fh1ory9uv9.execute-api.ap-south-1.amazonaws.com/Testing
+Connection URL: https://fh1ory9uv9.execute-api.ap-south-1.amazonaws.com/Testing/@connections
+
+ wss://7dljkv335j.execute-api.ap-south-1.amazonaws.com/test
+
+
+npm install -g wscat
+
+wscat -c  wss://7dljkv335j.execute-api.ap-south-1.amazonaws.com/test
+
+REST API:
+========
+
+https://79sw79i1hc.execute-api.ap-south-1.amazonaws.com/test/transactions?transactionId=1234&type=check&amount=123
+
+
+https://www.youtube.com/watch?v=uFsaiEhr1zs
+
+{"action" : "echo" , "message" : "Hello everyone"}

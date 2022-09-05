@@ -1,0 +1,103 @@
+IP Addresses: 
+======================================================
+Types:
+  IPv4 --- 32 bit
+  IPv6 --- 128 bit
+
+Classes 
+Class A -- The first bit of the first octet is always set to 0 (zero). Thus the first octet ranges from 1 – 127
+Class B -- An IP address which belongs to class B has the first two bits in the first octet set to 10, i.e. 128-191
+Class C -- The first octet of Class C IP address has its first 3 bits set to 110, that is −192-223
+Class D -- Very first four bits of the first octet in Class D IP addresses are set to 1110, giving a range of −224-239 --Class D is reserved for Multicasting --No subnet mask
+Class E -- This IP Class is reserved for experimental purposes only for R&D or Study. IP addresses in this class ranges from 240.0.0.0 to 255.255.255.254. 		Like Class D, this class too is not equipped with any subnet mask. 
+
+
+192.168.100.0/24 --- Subnet Mask 
+
+24 means 24 bits set to 1's  --255.255.255.0 N.N.N.H ---It is default subnet mask for Class C.   N=Network H=Host
+
+192.168.100.0 -- NID (To identify Network and Routing IP)
+192.168.100.0
+192.168.100.254
+192.168.100.255 --Broadcast IP
+
+Classfull or usefull IP address for Class C is 256-2 =254
+
+Subnetting : 
+=========================================================
+
+Number of networks is 2^(1 of 4th octet) Ex: Class C = 1
+Number of Hosts is 2^(0's of 4th Octet)  Ex: Class C = 256
+
+
+VPC (Virual Private Cloud)
+===========================================
+To create virtully logical n/w's. 
+
+https://s3.amazonaws.com/awsroute53test.tk/Class+Notes+16th+Nov+2019+AWS+Batch.docx
+
+Steps to create VPN: 
+
+NID for VPC 192.168.100.0/24
+Create Two Subnet 
+    Subnet1 = 192.168.100.0/25
+    Subnet2 = 192.168.100.128/25
+Internet Gateway à attach this IGW with the VPC
+Route Table (One) à Configure it
+Create one instance in each subnet, verify communication
+
+
+
+
+Clean up Process of VPC
+Important:
+ Delete/terminate all the instances working in this VPC
+ Delete NAT Instances/Gateway
+ If you have peering connection, delete them first
+
+After ensuring these tasks, we can delete the VPC
+
+==== Public and Private
+172.16.10.0/24
+Subnets  Current Requirments for subnets = 2
+    For future use, I want to spare range for two more subnets 
+    /26 à 4 Network à 64 (64-2=62usable)
+    IN AWS 64 - 5 = 59 usable
+    2 for NID & Brdcast, other 3 AWS Reserves
+     For  NAT Devices
+ 
+
+  PublicSubnet1 = 172.16.10.0/26 <- NIDs for subnet1
+  PrivateSubnet2 = 172.16.10.64/26 < NIDs for subnet2
+
+  Subnet3  à 172.16.10.128/26
+  Subnet4 à 172.16.10.192/26
+
+IGW
+Create one more RT
+Create some instances in each subnet,
+Check the commination
+
+What should I to make Subnets public and Private?
+
+
+To connect private instance from Public accessed machine is  
+
+ssh -i "my-vpc-key.pem" ec2-user@52.66.253.52 
+=================================================================
+NAT
+=============================================================
+
+NAT G/w sharing/passing internet connection to Private Subnes and their Privates Machines.
+NAT G/W behaves like an NAT Instance 
+ Therefor every NAT G/W is mapped with an EIP
+Estimated Charges for N.Virginia à $0.045/hr
+NAT à NAT G/w sharing/passing internet connection to Private Subnes and their Privates Machines.
+NAT G/W behaves like an NAT Instance 
+ Therefor every NAT G/W is mapped with an EIP
+Estimated Charges for N.Virginia à $0.045/hr
+
+
+
+
+

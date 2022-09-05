@@ -1,0 +1,7 @@
+# Sample configuration file for the 64bit Windows launcher: SQLWorkbench64.exe
+#
+# If your Java runtime is not automatically detected, specify the full path to the jvm.dll
+# and rename this file to SQLWorkbench64.ini
+
+vm.location=c:\Program Files\Java\jre\bin\server\jvm.dll
+

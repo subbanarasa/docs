@@ -1,0 +1,393 @@
+akhil_2005@rediffmail.com
+duolingo.com --to learn different languges.
+
+=============================================================
+14-03-2020: Basic Recap of AWS
+=============================================================
+3 Service models of Cloud:Service model -- How cloud provider sells services  user
+
+IaaS (Infrastructure as a Service). IaaS businesses offer services such as pay-as-you-go storage, networking, and virtualization. ...
+PaaS (Platform as a Service). ... Google App Engine. FireBase.
+SaaS (Software as a Service)..... Gmail/Facebook/Google Drive
+
+
+
+Deployment model -- How can we deploy it and how enduse can be access it. 
+ 
+1. Public 
+2. Private
+3. Hybrid 
+4. Community. --Group of Organization share the common infracture. 
+
+
+AWS --Region-Availbility zone --Edge Locations.
+
+	We have replication of regions to achived DR
+	Replication of AZ to achive HA and Failover
+	HA -- Can be achived cross zone with Load balancers.
+	Route53 can be used to get cross region high availability. 
+	
+	
+http://cloudping.info/  -- to get Latency  < 500 ms is good to select. 
+
+
+Access AWS services -- console/command Line/SDK
+
+aws s3 mb s3://demsubbaawsprof  -- To create bucket. 
+
+aws s3 cp test.txt s3://demsubbaawsprof/test.txt	
+
+nano/vi to edit file.
+========================================================================
+15/03/2020 
+========================================================================
+VPC
+========================================================================
+
+VPC-- It is private n/w which can be controlled. 
+
+Access Control List Additional layer to protect instance. 
+
+Default VPC is comes when we create account and non default/custom is where user creates it. 
+
+CIDR classless inter domain routing ... 
+
+IPV4-- 32 Bit and IPV6 -- 128 Bit
+
+A subnet is a logical partition of an IP network into multiple, smaller network segments. It is typically used to subdivide large networks into smaller, more efficient subnetworks
+
+IG is not mandatorty to attach to VPC , if only required to access it public.
+
+All subnets in the same VPC are interconnected. 
+
+Main Routing table creates when it create VPC.  if you create some need to make it main then only it works. 
+
+
+Tenancy -- Default/Dedictaed.  Dedicated means h/w should be dedicated when it launch EC2 
+
+
+IG -- Bidirectional. 
+
+
+Instance DNS names are missing if non-default VPC selected --- DHCP Optionset need to be attached to VPC then we get DNS name. 
+
+
+Secuirity Group, You can only allow and can't be denied. 
+
+
+A NAT device forwards traffic from the instances in the private subnet to the internet or other AWS services.
+
+IG -- Two way communication.
+ 
+NAT GW has to be created public subnet and Create Routeing for Private. 
+
+===========================================================================
+VPC Peering:
+========================================================================
+
+It is possibile to Default or custom VPC's.  It can do cross account, cross region and same region. 
+
+It is point to point connection b/w VPC's. 
+
+IG is not mandatory to attach for peering.  We can attach only for testing.
+
+
+
+VPN and Direct connect --- Direct connect is speed and it can access within VPC or outside. 
+
+
+Lab -- VPC Peering cross region ? ? 
+
+==========================================================================================
+21/03/2020
+==========================================================================================
+Security Groups: 
+---------------
+
+500 SG can be created in one VPC and you can allow traffic but can't block the traffic. 
+
+To deny the traffic need to use ACL and it come when you create VPC and assoctaed with subnet
+
+ 
+NACL are stateless. 
+
+Transit VPC and GW : 
+------------------
+Multple VPC's to connect from different geographical location. it simiply the connections and saves the cost. 
+
+Transit GW to connect multiple VPC's and faster than Transit VPC. 
+
+AWS Transit Gateway is a service that enables customers to connect their Amazon Virtual Private Clouds (VPCs) and their on-premises networks to a single gateway. ... Any new VPC is simply connected to the Transit Gateway and is then automatically available to every other network that is connected to the Transit Gateway.
+
+
+VPC EndPoint:
+=============
+
+To connect any global service via private subnet Ex: Dynamo DB, S3, Cloudwatch . 
+
+
+ 
+============================================================================================================================
+AWS Lambda:
+=============================================================================================================================
+
+It is serverless service and event driven service. It is based on events cost will be charged. 
+
+Lambda can be created inside custom VPC.
+
+Upload Object to S3 and send Email ? 
+
+Cloud watch is used to create schedule events.
+
+https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html
+
+
+
+==================================
+28/03/2020
+==================================
+
+Practice Create install on schedule based or start instance? 
+
+Storage: 
+=========
+
+EFS --Region specific and S3 is global
+
+Major limitation of EFS is it can be used for Lixux and can't be accessed in windows . To overcome this AWS is created EFx for windows. 
+
+Open EFS port into SG of EC2 instance to attach. 
+
+
+
+
+EFS -- Mount with VPC Peering ? 
+
+
+Database:
+=========
+Accessing RDS from EC2 ?
+
+=======================
+29/03/2020
+=======================
+Dynamo DB :
+========== 
+
+Dax : Accelarator. 
+
+Assignment -- Load Data
+
+https://docs.amazonaws.cn/en_us/amazondynamodb/latest/developerguide/SampleData.LoadData.html --Done
+
+
+Elastic Cache:
+=============
+
+Accessing Redis from EC2 ?
+
+RedShift:
+=========
+
+arn:aws:iam::266536961422:role/myRedshiftRole
+
+awsuser/Awsuser1234
+
+It is DWH ... 
+https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-create-sample-db.html
+
+https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-using-workbench.html
+
+https://aws.amazon.com/premiumsupport/knowledge-center/cannot-connect-redshift-cluster/  --Done.
+
+===============================================================================================
+S3:
+================================================================================
+Max 100 buckets for Account
+
+DDDDDDD
+
+=========================================================================
+04/04/2020
+======================================================================
+S3 CRR:
+=======
+S3 bucket cross region replication -- To replicate from one region to other region with IAM rule. 
+
+Transfer Accelation in S3:
+=========================
+Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. 
+Transfer Acceleration takes advantage of Amazon CloudFront’s globally distributed edge locations. 
+As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path. 
+
+Storage classes in S3:
+=====================
+Amazon S3 offers four different storage classes that offer different levels of durability, availability, and performance requirements. Amazon S3 Standard is the default class. Amazon S3 Standard Infrequent Access (IA) is designed for less frequently accessed data
+
+S3 to Glacier and Glacier can be possibile. 
+
+S3 life cycle policties to control the cost.
+
+Restore from Glacier: 
+====================
+Archive Retrieval Options
+
+Expedited, Standard and Bulk
+
+
+CDN CloudFront:
+===============
+
+https://aws.amazon.com/blogs/networking-and-content-delivery/dynamic-whole-site-delivery-with-amazon-cloudfront/
+
+
+Elastic BeasnStack:
+===================
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-advanced.html
+
+
+ ================
+ 05/04/2020
+ ===============
+ Route53: 
+ ========
+ Amazon Route 53 is a highly available and scalable cloud Domain Name System (DNS) web service. 
+ 
+ https://www.freenom.com/en/index.html
+ 
+ Routing Policy;
+ 1. Simple
+ 2. Weighted
+ 3. Latency
+ 4. GeoLocation
+ 5. Failover
+ 6. Muli value answer
+ 
+ 
+ LB is restricted to AZ but Route53 is global 
+
+Assignment:
+
+1. Check LB redudent , how EC2 instances maintained ?
+2. vpc endpoint for route53
+
+
+AWS OpsWorks: ---Need to practice ? 
+============
+Amazon Web Services OpsWorks is a cloud computing service from Amazon Web Services (AWS) that manages infrastructure deployment for cloud administrators. The service automates deployment, configurations 
+
+===================
+12/04/2019
+===================
+CloudFormation: Template to install 
+
+Install of LAMP (Linux Apache Mysql PHP)
+
+Kenisis:
+==========
+
+https://github.com/aws-samples/amazon-kinesis-data-visualization-sample/blob/master/src/main/static-content/cloudformation/kinesis-data-vis-sample-app.template
+
+API G/W:
+========
+
+To connect outside serives with AWS Service.
+
+REST API's 
+WebSocket API --Bidirectional
+
+https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-from-example.html
+
+
+Build our own API using WebSocket. ? 
+
+
+Application Service:
+====================
+
+1. SES Simple eMail Service https://sendy.co/ --Send email Assignment with Sendy ?
+2. 
+
+
+==========================================================================================
+18/04/2019
+===========================================================================================
+
+CloudWatch : 
+===========
+To send Metrics and Alarms . 
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html  Assignment..
+
+
+CloudTrails: 
+===============
+
+For Auditing purpose for the AWS services. Like who logged in and which service started. 
+
+
+Datadog to compare the metrics assignment ? 
+
+
+ServiceLens: 
+
+
+Amazon WorkSpace::
+==================
+
+
+19/04/2020:
+===========
+Elastic Load Balancers:  It calls as Elastic it can scalled and changed dynamically
+======================
+1. Classic -- workss on both App and n/w  i.e http/https and tcp/ssl, it Supports sticky session.
+2. N/W -- B/W Availabilty zones to route the traffic. To loadbalance b/w Regions we need to use route53
+3. Application -- 
+
+Using VPC Peering can we do Cross region load balancing ? 
+
+
+
+https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-application-load-balancer.html
+
+https://docs.aws.amazon.com/elasticloadbalancing/latest/application/tutorial-load-balancer-routing.html
+
+https://docs.aws.amazon.com/elasticloadbalancing/latest/application/tutorial-target-ecs-containers.html   ---Micro service based Assignment. 
+
+
+http://finalecsal-1236249732.ap-south-1.elb.amazonaws.com/
+
+http://myalbdemo-1879985666.ap-south-1.elb.amazonaws.com/?type=second
+http://myalbdemo-1879985666.ap-south-1.elb.amazonaws.com/?type=first
+ 
+Best Practices AWS Architect:
+=============================
+
+Resilence:   Which recover automatically on failure. 
+  -- Multiple Regions and AZ for Fault tolerence. 
+  
+Cross region replication can be happen with Arora only but not with otheres.  
+		
+ 
+25/04/2020
+===========
+EMR (Elastic Map Reduce): Assignment ?
+=========================
+
+Case Studies:
+============
+
+https://salsadigital.com.au/case-studies/aws-migration-case-study
+
+
+ 
+ 
+ https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-gs-process-sample-data.html
+ 
+  https://aws.amazon.com/tco-calculator/
+  https://aws.amazon.com/pricing/
+ 
+ 
+
+
+

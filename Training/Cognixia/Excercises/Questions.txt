@@ -1,0 +1,108 @@
+
+https://s3.amazonaws.com/cognixia14dec.com/Class+Notes+16th+Nov+2019+AWS+Batch.docx
+
+https://s3.amazonaws.com/awsroute53test.tk/Important+Links+and+Question+for+AWS+Cloud+Computing.docx
+
+https://s3.amazonaws.com/awsroute53test.tk/Class+Notes+16th+Nov+2019+AWS+Batch.docx
+
+===============================
+17/11/2019
+================================
+
+Lab:: 
+
+1. Create a Linux Instance (First Instance) in a Region and AZ, use t2.micro instance type, and connect a security group which is open for ping traffic and ssh protocol. So that we can take its remote and we can ping this machine.
+2. Create another Linux Instance in a same Region and AZ using same kind of configuration, and using this instance take the remote of first instance.
+
+
+
+1. How you can differ between edge location and availability zones.
+2. If you create an instance in One region can we see that instance in another region.
+3. Can we add more than one EBS volumes with the same EC2 instance.
+If yes, how?
+4. Once the instance has been stopped, will AWS charge the amount the for the machine.
+5. How many machines we can create in a Region by default?
+6. Define the purpose of EC2 Security Group. Can we launch a VM without Security Group.
+7. How many maximum number of Security Groups can be added to one instance?
+8. What are the limitations of AWS Free Tier Account, please write in detail?
+9. What maximum size of EBS volume under Free Tier can be taken.
+10.Please find a link on AWS to check the health of existing availability zones at present?
+
+
+
+Please submit these ans on support@cognixia.com <mailto:support@cognixia.com>
+Reference Class 2 Q&A à16 Nov Batch
+
+
+===============================================
+24/11/2019
+================================================
+I've lost my SSH private key and am locked out of my Amazon Elastic Compute Cloud (Amazon EC2) Linux instance. How can I regain access?
+
+https://s3.amazonaws.com/awsroute53test.tk/awshomework.JPG  ---For Hint.
+
+30/11/2019: 
+================================
+1. what is the Sub-net ?
+
+2. How to find AZ in the Region ?
+3. what are the public IP's and Private IP's ? 
+	A public IP address is an IP address that can be accessed over the Internet. Private IP address, on the other hand, is used to assign computers within your private space without letting them directly expose to the Internet
+4. Distingush b/w private and public Ips?
+5. Can Instance can have without private IP?
+6. Can Instance can have without public IP?
+	Yes, it can
+7. what is the Router and it's function ? 
+
+Task: 
+
+01/12/2019
+========================================
+
+1. Access Internet via Private VM or private subnet? 
+2. What is Public Subnet and Private Subnet, how you would distinguish?
+3. What Setting/Configuration makes a subnet public or private?
+4. How to delete NAT G/W?
+
+Task:
+https://ssdn4809bucket123.s3.amazonaws.com/EC2+VPC+EFS+updated.pdf
+
+Slide 18 and 19
+
+
+
+07/12/2019
+=========================================
+
+Lab- To create Internet and Internal ELB. Refer -- Lab_07_12_2019.png
+
+08/12/2019
+==========================================
+ELB with Autoscalling Exercise -- Refer -- ELBAutoscalingDia.docx
+
+
+
+15/12/2019
+========================================================================
+Lets say we have two buckets in AWS, Ist is in N.Virginia and 2nd is in Ohio region. We need CRR in bi-directional mode. How to achieve this?
+
+Verify the listed jobs:
+What if your buckets has some data before CRR, will it be syncd automatically?
+
+What if you delete some objects, once the CRR is enabled?
+
+
+21/12/2019
+=============================================
+Launching an Application AWS using Elastic Bean Stack. 
+
+Scenario: Launching a application on AWS using Elastic Beanstalk
+1. You must have an application in  zipped format (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/RelatedResources.html)
+2. You have to use ELB in it
+3. Use Auto scaling with fixed number of machines, lets take 2 numbers
+4. Delpoy application using elastic beanstalk
+5. Once deployment is confirmed
+6. Use Route53 service to map domain name with the endpoint of ElasticBeanstalk
+7. Verify the job.
+
+

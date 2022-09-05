@@ -1,0 +1,19 @@
+08-08-2020
+=====================================================
+https://www.virtualbox.org/
+
+15/08/2020
+
+https://www.vagrantup.com/downloads
+https://www.virtualbox.org/
+
+app.digrams.net --- To draw digrams online
+
+bento/centos-7.5
+
+https://bitbucket.org/ankit6300/ankit-batch2/src/master/Vagrantfile
+
+# To see cpu details
+cat /proc/cpuinfo 
+# To see free Memory
+free -m 

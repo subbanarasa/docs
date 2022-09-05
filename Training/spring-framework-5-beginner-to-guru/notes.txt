@@ -1,0 +1,265 @@
+=========================
+SOLID Principles of OOPS: Autho of SOLID priciple is Robert Uncle Bob Martin
+=========================
+Focus on dependency management.  
+S -- Single Responsibility Principles -- class should be small and not more than one responsibility
+O -- Open and close principle -- class should be open for extention and closed for modifications.
+L -- Liskov substitution principle. ---  Objects in a program is replaceable with subtype instances. by Barbara Liskov
+I -- Interface segregation principle -- Many client specific interfaces are better than single general purpose Interface. Refer S ? 
+D -- Dependency Inversion principle --- It is not a dependency injection.  A. High-level modules should not depend on low-level modules. Both should depend on abstractions.B. Abstractions should not depend on details. Details should depend on abstractions.
+
+Cohesion is a way to measure how much the code segments within one module (methods of a class, classes inside a package…) belong together -- Higher Cohesion is better. 
+ 
+Robustness, which could be defined as the ability of a computer system or algorithm to handle mistakes and malfunctions (which could be caused by various factors such as programmer’s mistake or incorrectly formatted user input)
+=====================
+Dependency Injection:
+=====================
+It is where needed dependency object is injected by other object. 
+Types : by class private properties (least preferred), by setters and by contrstructer ( most preferred) 
+
+DI can be done via Concreate classes or interfaces but preferred is interfaces. 
+IoC (Inversion of Control) -- Dependency will be determined at runtime.  IoC is runtime environment (framework) which injects dependencies -Ex:Spring frmaework.
+
+Spring 4.4 onwards Spring enables automatically contstructor based Autowiring no need to mention Autowired. 
+
+Qualifier Annotation is used to Identify which implementation of Interface need to Inject. 
+
+Private Injection can be done without Qualifier name using variable name which matchs impl class name. 
+
+@Primary helps to inject primary bean even propery name matches also overrides this.  i.e reason to avoid property injection. 
+
+Each profile can have his own primary beans. you can define primary beans for the muliple profiles like @Profile("en","default")
+
+======================
+Spring Bean Lifecycle:
+======================
+instantiate --> populate Properties --> call setBeanName of Aware --> call setBeanFactory of Aware --> call setApplicationContext of aware --> preinitialization(BeanPostProcessor) --> afterProperiesSet(InitializingBean) --> custom Init method @PostConstruct --> postinitialization (BeanPostProcessor). ---Ready
+
+Destruction: Container Down --> Disposable Bean destroy() --> Custom Destroy method @PreDestroy--Terminated. 
+
+InitializeBean and DisposableBean are the call back interface to tap beanlife cycle. 
+
+@PostContstruct and @PreDestroy are LifeCycle annotations are used to access bean life cycle.
+
+======================
+
+we can create banner.txt in resource folder to change banner of the spring boot. 
+
+https://devops.datenkollektiv.de/banner.txt/index.html
+
+spring.banner.image.location=  =to put image
+
+============================
+Spring Configuration Options
+==========================
+
+1. XML Configuration -- introduced in spring 2.0 and still supports in 5.0
+2. Annotation based -- Introduced in spring 3.0 and picked up compaonenet scan . Ex: @Controller @Service
+3. Java based config-- Introduced in spring 3.0. Beans need to defined with @Bean and Configuration classes need to define with @Configuration
+4. Goovy DSL 
+
+Industry trend is favour of Java based 
+
+Spring framework stereo types : extress the intenet of the Bean
+
+@RestController extends @Controller , it is a convinence annonation with @Controller and @ResponseBody
+
+@Component Indicates that an annotated class is a “component” and it will be created as a bean
+@Controller Indicates that an annotated class has the role of a Spring MVC “Controller”
+@RestController Convenience Annotation which extends @Controller, and adds @ResponseBody
+@Repository Indicates that an annotated class is a “Repository”, originally defined by Domain-Driven Design (Evans, 2003) as “a mechanism for encapsulating  storage, retrieval, and search behavior which emulates a collection of objects”
+@Service Indicates that an annotated class is a “Service”, originally defined by Domain-Driven Design (Evans, 2003) as “an operation offered as an interface that stands alone in the model, with no encapsulated state.”
+
+
+Spring componenet scan is done from the package of where @SpringBootApplication class defined to down . if we want to override use @ComponentScan()
+
+application context xml need to import into spring boot application like @ImportResource("classpath:<file>")
+
+Spring Boot maven plugin allows packaging the executable Jar
+
+Spring boot can build using ant with Ivy (Depenecies)
+
+@SpringBootApplication includes @Configuration, @EnableAutoConfiguration @ComponenetScan
+
+We can exclude of AutoConfig using @EnableAutoConfiguration(exclude={})
+
+
+mvn spring-boot:help -Ddetails=true  --To see the details of targets.
+mvn spring-boot:run -Drun.arguments=--debug -- To see the more details auto config of the spring boot. 
+
+Spring Bean Scopes
+--------------------
+• Singleton - (default) Only one instance of the bean is created in the IoC container.
+• Prototype - A new instance is created each time the bean is requested.
+• Request - A single instance per http request. Only valid in the context of a web-aware Spring ApplicationContext.
+• Session - A single instance per http session. Only valid in the context of a web-aware Spring ApplicationContext.
+• Global-session - A single instance per global session.Typically Only used in a Portlet context. Only valid in the context of a web-aware Spring ApplicationContext.
+• Application - bean is scoped to the lifecycle of a ServletContext. Only valid in the context of a web aware.
+• Websocket - Scopes a single bean definition to the lifecycle of a WebSocket. Only valid in the context of a web-aware Spring ApplicationContext.
+
+Java configuration we can use @Scope annotation.
+
+--------------------------
+External Properties with Spring Framework
+-----------------------------------------
+@PropertySource({"classpath:datasource.properties", "classpath:jms.properties"})  --- To load specific files. 
+
+In spring 4 we can load like below 
+
+@PropertySources({
+        @PropertySource("classpath:datasource.properties"),
+        @PropertySource("classpath:jms.properties")
+})
+
+@Autowired
+Enviroment env --- it helps to get read environment variables. 
+
+Spring boot default loads application.properties files. 
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config
+
+profile properties files content will be override the application.properties files. 
+
+--- is the file seprator in yml file. 
+
+==============================================================
+
+HTTP1.1 encoding, cookies and charset headers added. 
+
+
+GET - is used when you visit a website.
+HEAD - is like GET, but only asks for meta information without the body. 
+POST - is used to post data to the server. Typical use case for POST is to post form data to the server
+(like a checkout form)
+PUT - is a request for the enclosed entity be stored at the supplied URI. If the entity exists, it is expected to be updated.
+POST is a create request
+PUT is a create OR update request
+DELETE - Is a request to delete the specified resource
+TRACE - Will echo the received request. Can be used to see if request was altered by intermediate servers
+OPTIONS - Returns the HTTP methods supported by the server for the specified URL 
+CONNECT - Converts the request to a transparent TCP/IP tunnel, typically for HTTPS through an unencrypted HTTP proxy
+PATCH - Applies partial modifications to the specified resource 
+
+
+Idempotence - A quality of an action such that repetitions of the action have no further effect on the outcome
+• PUT and DELETE are Idempotent Methods
+• Safe Methods (GET, HEAD, TRACE, OPTIONS) are also Idempotent 
+POST is NOT Idempotent 
+
+
+====================================================================
+
+JPA Data Modeling with Spring and Hibernate
+
+===============================================
+
+
+Types of Relationships
+• One to One - @OneToOne
+• One entity is related to one other entity
+• One to Many - @OneToMany
+• One entity is related to many entities (List, Set,Map, SortedSet, SortedMap)
+
+Owning Side
+	• The Owning side in the relationship will hold the foreign key in the database
+	• One to One is the side where the foreign key is specified
+	• OneToMany and ManyToOne is the ‘Many’ side
+		• ‘mappedBy’ is used to define the field with “owns” the reference of the relationship
+		
+Fetch Type
+	• Lazy Fetch Type - Data is not queried until referenced
+	• Eager Fetch Type - Data is queried up front
+	• Hibernate 5 Supports the JPA 2.1 Fetch Type Defaults
+	• JPA 2.1 Fetch Type Defaults:
+		• OneToMany - Lazy
+		• ManyToOne - Eager
+		• ManyToMany - Lazy
+		• OneToOne - Eager
+JPA Cascade Types
+ JPA Cascade Types Control how state changes are cascaded from parent objects to child objects.
+	• JPA Cascade Types:
+		• PERSIST - Save operations will cascade to related entities
+		• MERGE - related entities are merged when the owning entity is merged
+		• REFRESH - related entities are refreshed when the owning entity is refreshed
+		• REMOVE - Removes all related entities when the owning entity is deleted
+		• DETACH - detaches all related entities if a manual detach occurs
+		• ALL - Applies all the above cascade options
+	• By default, no operations are cascaded
+	
+Inheritance
+	• MappedSuperclass - Entities inherit from a super class. A database table IS NOT created for the super class
+	• Single Table - (Hibernate Default) - One Table is used for all subclasses
+	• Joined Table - Base class and subclasses have their own tables. Fetching subclass entities require a join to the parent table
+	• Table Per Class - Each subclass has its own table
+
+
+Hibernate DDL Auto
+
+• DDL = Data Definition Language
+• DML = Data Manipulation Language
+• Hibernate property is set by the Spring property spring.jpa.hibernate.ddl-auto
+	Options are: none, validate, update, create, create-drop
+	Spring Boot will use create-drop for embedded databases (hsql, h2, derby) or none
+	
+Initialize with Hibernate
+• Data can be loaded from import.sql
+• Hibernate feature (not Spring specific)
+• Must be on root of class path
+• Only executed if Hibernate’s ddl-auto property is set to create or create-drop
+
+Spring JDBC
+• Spring’s DataSource initializer via Spring Boot will by default load schema.sql and data.sql from the root of the classpath
+• Spring Boot will also load from schema-${plaform}.sql and data-${platform}.sql  Must set spring.datasource.platform
+• May conflict with Hibernate’s DDL Auto property Should use setting of ‘none’ or ‘validate’
+
+Lombok:
+================================================================
+Under the ‘target/classes’ you can view the complied class
+• IntelliJ --Verify you’ve enabled ‘annotation’ processing under compiler settings
+
+• @NonNull - Null check, will throw NPE if parameter is null
+• @Cleanup - Will call close() on resource in finally block
+@Getter - Creates getter methods for all properties
+• @Setter - Creates setter for all non-final properties
+• @ToString 
+@EqualsAndHashCode -- • By default will use all non-static, non-transient properties and Can optionally exclude specific properties
+
+• @NoArgsConstructor 
+• @RequiredArgsContructor -- Generates a constructor for all fields that are final or marked @NonNull Constructor will throw a NullPointerException if any @NonNull fields are null 
+@AllArgsConstructor 
+@Data  -- • Combines - @Getter, @Setter, @ToString, @EqualsAndHashCode, @RequiredArgsConstructor .  No constructor is generated if constructors have been explicitly declared
+• @Builder --  Implements the ‘builder’ pattern for object creation
+@SneakyThrows -- Throw checked exceptions without declaring in calling method’s throws clause 
+
+@Syncronized -- A safer implementation of Java’s synchronized
+
+
+Gotches -- Cyclic reference issue occur need to excude propery in @EqualsAndHashCode 
+	
+Testing Framework
+===========================================================================
+Integration Test -- Includes Spring context, Database and brokers.
+
+Mock -- A fake implementation of Objects
+Spy -- A partial mock, allowing to override speicific methods.
+
+https://stackoverflow.com/questions/10806345/runwithmockitojunitrunner-class-vs-mockitoannotations-initmocksthis
+
+@RunWith(MockitoJUnitRunner.class) (Junit4) or MockitoAnnotations.initMocks(this).
+
+@ExtendWith(MockitoExtension.class) (Junit5)
+
+
+
+MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+
+mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
+
+
+
+
+
+
+

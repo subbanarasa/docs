@@ -1,0 +1,43 @@
+
+Certified Kubernetes Administrator (CKA) --Cost $300  https://www.cncf.io/certification/cka/
+
+Certified Kubernetes Application Developer (CKAD) --Cost $300 https://www.cncf.io/certification/ckad/
+
+====================================================================
+
+https://www.confluent.io/certification/
+
+
+Certified Developer for Apache Kafka
+
+Confluent Certified Administrator
+
+========================================================================
+
+Java
+
+https://education.oracle.com/oracle-certification-path/pFamily_48
+
+
+=================================================================
+
+Spring Certified Professional
+
+https://tanzu.vmware.com/training/certification/spring-professional-certification
+
+
+=======================================================================
+
+https://www.datastax.com/dev/certifications
+
+
+
+
+===========================================================================
+
+
+Elastic Certified Engineer
+
+Elastic Certified Analyst
+
+Elastic Certified Observability Engineer

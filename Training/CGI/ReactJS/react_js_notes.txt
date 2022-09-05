@@ -1,0 +1,71 @@
+https://leanpub.com/understandinges6/read/
+
+https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-08-256.png
+
+https://transform.tools/html-to-jsx
+
+https://jsonplaceholder.typicode.com/posts
+
+https://github.com/arunprabu/blog-react-2021apr
+
+https://github.com/arunprabu/blog-react-2021apr
+Github Redux Project Link: https://github.com/arunprabu/blog-redux-cgi-apr2021
+npm install bootstrap react-router-dom
+
+npm install redux react-redux
+
+
+Webapps
+---
+  1. Server Side Rendering Apps (SSR Apps)
+      Page refresh 
+
+      1 Server ( Front End + Backend + Db Queries)
+      Resp: HTML, CSS, JS, Data
+
+      Disadv
+      --- 
+        Slower Webpages 
+        Pages will refresh 
+        High Bandwidth Consumption 
+        Expensive 
+
+
+
+  2. Client Side Rendering App (CSR Apps)
+      Pages will not refresh 
+
+      2 Servers 
+        1 Server - Front End Server (HTML, CSS, JS) - Port 3000 -- Single Page Apps (SPA)
+          Resp: HTML, CSS, JS 
+        1 Server - BAck end Server (Backend + DB Query ) - Port 8080  - REST API 
+          Resp: JSON 
+
+      Adv
+      ---
+        1. Faster Webpages 
+        2. Pages will refresh - -better UX 
+        3. Less Bandwidth Consumption 
+        4. Less Expensive 
+
+      SPA Characteristics:
+      ----
+        1. Page should not refresh 
+        2. URL should change 
+        3. History Should be maintained 
+        4. Retain header and footer 
+        5. update the page contextually - in b/w header and footer 
+        6. Active menu should be set 
+        7. Page title should change 
+
+      SPA Frameworks/Libraries 
+      ---
+        #1 React JS (library)
+        #2 Angular ( F/w)
+        #3 VueJS (f/w)
+
+      Course:
+      ---
+        ReactJS + Redux JS 
+      
+=====

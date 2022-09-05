@@ -1,0 +1,9 @@
+[
+    {
+      "Description": "My Server OVA",
+      "Format": "ova",
+      "UserBucket": {
+          "S3Bucket": "awsprofdemo",
+          "S3Key": "Damn Small Linux.ova"
+      }
+  }]

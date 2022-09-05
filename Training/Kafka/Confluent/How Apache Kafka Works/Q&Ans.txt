@@ -1,0 +1,159 @@
+What happens if you do not close the producer, say due to a process kill? What are the implications?
+
+If you don't call close(), you might end up with resource/memory leaks (depending on the implementation/language)
+
+Is there no better way for a producer to get notified of new messages than continuously polling?
+
+Consumers (not producers) consume messages. Pull vs push was a design decision for Kafka to enable high scalability. There is a discussion about it here: http://kafka.apache.org/documentation.html#design_pull
+
+In case of failure how the request is redirected to replication, Is it manually or is there any setup in it?
+
+A broker Failure is handled automatically by the leaders and followers; as long as everything has been setup correctly (min 3 replicas; etc)
+
+consumer and producer are partition aware?
+
+Yes they are. They behave differently; but are both aware. Partitions are a fundamental design choice for kafka throughput
+
+How long does it take a follower to be in-sync with the leader?
+
+It depends on the volume of data and the network speed. In most cases, on a properly tuned system with adequate hardware it should rarely fall out of sync.
+
+if the topics are replicated, can we make sure to get it consumed only by 1 consumer so that only one can work on that topic?
+
+Consuming messages is not destructive (this is not a queue); so any number of consumers can consume all messages in a topic without any problems.
+
+Is there a way to know which broker is the leader for that topic and which brokers it is replicated?
+
+Yes, this is published by the brokers as cluster metadata. Most kafka monitoring tools (including Confluent Control Center) will show the ID's of the leader and all followers for each topic(/partition).
+
+Is Kafka rack aware for spreading the partitions for fault tolerance?
+
+Yes it is. You can optionally configure a rack.id. This is common in DC's and also when manually deploying Kafka on availability zones on a cloud provider.
+
+what happens when active controller is down.? How kafka handle such scenarios?
+
+A new controller will be elected from the other brokers. There will be a short pause for client activity while this happens. This happens every time a kafka cluster is rolled (all of the nodes are restarted, one after another) - it is not a outage condition.
+
+Is message retention set per message or per topic?
+
+Hi Ravi - it is per topic. So, for instance, a topic "transactions" could have retention of 1 day; and a topic "accounts" could have retention of 7 years.
+
+How do you handle the issue where you get infinite "(Re-)joining group logging" every 5 seconds?
+
+Hi Ariel. That is related to consumer rebalancing. I'd suggest going here: Get answers to your Apache Kafka® and Confluent Platform questions in the Confluent Community Slack channel. https://launchpass.com/confluentcommunity
+
+If a broker goes down as shown in the slide, will clients be able to write as the replication was initially set to 3?
+
+Under normal circumstances, with replication.factor=3 and min.insync.reps=2; then yes, producers will continue unaffected.
+
+How do you ensure exactly-once semantics to make sure the message is not lost nor duplicated on consumers?
+
+Hi Ariel. Big question. So, on the Producer side, you can configure acknowledgements in the settings to have the brokers communicate back when writes complete. `acks` can be 0, 1, or all -- none, message makes it to the leader partition, or message makes it to all in-sync replicas. You can provide a callback with the send operations to act on this. Also, you can enable retries. (Property `retries`). Kafka also now has Exactly Once Semantics (EOS), so setting `enable.idempotence` to `true` will be the easiest thing.
+
+So brokers replicate data before flushing to their own storage?
+
+Hi Felipe, the leader will write to its storage before replicating to followers. This is a very fast sequential write.
+
+How partition assignment to consumer from consumer group would happen when one of broker is down?
+
+This is called a rebalance; and affected consumers will pause when a rebalance is being run.
+
+Any CDC capabilities offered by Kafka?
+
+No; use CDC tools from vendors for this. Most, if not all, are fully compatible with Kafka. Common tools are Debezium, GoldenGate, IBM IIDR, Attunity etc.
+
+what are the storage costs in Confluent platform?
+
+Hi Felipe - we publish the pricing here: https://www.confluent.io/confluent-cloud/ As a fully managed software as a service; billing is based on message throughput; so there is not separate charge for storage/nodes/endpoints etc.
+
+If yes what's supported today? Can you point me to a link where I can found more info?
+
+Hi Vish - there are 115 Connectors for Kafka Connect - https://www.confluent.io/product/connectors-repository/ - these do various types of data harvesting, depending on the source (or target)
+
+How can consume from a topic using multiple consumers in consumer group using java? For more better scaling Any resources?
+
+Hi Amey. This is a common pattern: Mike will speak about consumer groups design. I also suggest searching the Confluent Blog for guidance on scaling consumers for performance.
+
+How can we maintain message order across partitions - we want to consume the messages in a specific order but still utilize partitions.
+
+No; this is not possible; for Kafka (or for any other partitioned distributed system). You need to make a tradeoff here between ordering requirements and tuning the system to operate as fast as possible.
+
+There is a configurable retention period. How do we check if messages not processed are discarded ?
+
+Hi Keng; yes retention can be set at the topic level. Kafka is not a queue; so the brokers do not track the "consumption" state of messages. Applications must do this instead. Ensure that the retention period is long enough for whatever consumption patterns the apps will use (such as continuous; once daily; etc).
+
+is there compression at the storage level?
+
+Not at the storage level; but at the topic level (or broker level). Ideally, you should select a compression algorithm for all topics as the space saving can be considerable.
+
+How to achieve at least once semantics in Kafka? Both from Producer and Consumer Side.
+
+Hi Kiran - please see my answer to Ariel's similar question below.
+
+How to scale consumer horizontally (by adding /reducing new instances of the consumer) at any point in time?
+
+Yes, this is possible, and the kafka client protocol handles this automatically by rebalancing partitions across the (increased) number of consumers. For instance, it is common to scale up consumers at month-end; of the business processes an increased wave of data for a few days.
+
+Producer design: what sort of factors would determine the choice of a partition?
+
+the number of partitions defaults to 1. I'd benchmark with several values (2/4/8/16/32) etc to see how the app behaves with increased numbers of partitions. It will scale up to a point where resources start to become exhausted. It can also be dictated by ordering requirements (if EOS is required)
+
+is there a way to monitor how many retries are happening during ingestion of data into a topic?
+
+Yes, as long as logging for the client is on; you will see logged entries for retry activity.
+
+Is there De-dup support for messages with same value / key to remove duplication?
+
+Not built into the kafka client; no so you need to code for this manuallu. It is possible to send the same message to a topic. This differs from failure processing (retries) - which will not send the same message to broker more than once.
+
+Is there an option for encryption at rest in kafka?
+
+There is no built-in encryption layer for the kafka broker. We recommend end to end encryption - where producers encrypt the pii in the message payload (or the entire message). Most SAN appliances offer an encryption layer which is also commonly used.
+
+Producer design: what sort of factors would determine the choice of a partition? (cont'd)
+
+Generally: exactly once requirements (partitions=1); low-throughput topics (low partition count); and high throughput topics (high partition count) Where 1=1; low=2-8 and high up to 32. General guidance.
+
+Producer design: what sort of factors would determine the choice of a partition? (cont'd) so for client producer, is it round-robin? or different criteria?
+
+If no key is set in the message; and the partition count>1 then, yes it uses round-robin by default. In this case you still get high throughput using partitions, but you do not need to do any partition management as round-robin is used.
+
+Does enabling EOS also reduce performance similar to the ACK ALL?
+
+Yes, that is correct - there is a performance penalty for using EOS.
+
+What is the property need to be configured on producer to achieve EOS?
+
+Hi Amey - please see my answer to Ariels similar question below. It is a combination of properties for producers/broker/consumer.
+
+We set ACKS=ALL, RETRIES=true but we get duplicate records on consumer side? Is there a setting I'm missing for exactly once semantics? (Kafka version 0.10.1)
+
+Hi Ariel - I cannot diagnose this problem here. I recommend asking it on the Confluent Community slack channel https://launchpass.com/confluentcommunity
+
+Is it required to flush after produce, it causes to make the producer works synchronously. Is there any other way to make sure the topic is produced?
+
+Hi Chandra - produce() is async: " it simply enqueues your message on an internal queue for later transmission to the broker." - as explained here https://github.com/confluentinc/confluent-kafka-python/issues/137
+
+Key based partitioning may cause one partition to be large but with replication in place won't it make all partition of same size , nullifying size issue.
+
+Yes thats correct; in the same way that cardinality for an index for a database can become unbalanced; the same problem exists when using keyed partitions. This can cause "hot partitions" which have much more activity than other partitions. If the key distribution is uneven, then use the default partitioning (round robin) may be a better idea
+
+for EOS to work it means the consumers have to relate the sequence assigned by Kafka to the message emitted by the source. How does a producer is able to link a specific source? how can a sequence relate to the actual message? it sounds like is up to the actual implementation within each consumer and not out of the box?
+
+Hi Felipe You are getting into some of the nuances of EOS. See details of how it is implemented on the announcement blog post (from 2017): https://www.confluent.io/blog/exactly-once-semantics-are-possible-heres-how-apache-kafka-does-it/. There is also a lot of discussion on the internet on different scenarios
+
+If we have only one consumer, does the consumption is done by topic? meaning the consumer does not see messages from other partition until the previous one is exhausted ?
+
+Hi Felipe: If it is a single partition topic, the consumer gets all messages. If it is a two-partition topic, then then the consumer is load-balanced across both partitions, and it gets all messages, but ordering is no longer guaranteed. And so on for higher partition counts. So consumers load balance consumption accross partitions; rather than reading to the "end" of a partition.
+
+Sorry, I do not get about Consumer Group and rebalances because Kafka consumer supposed to perform polling from Topic instead of Topic push into Consumers, right?
+
+Rebalances (mostly) only occur when the number of consumers in a group change - as app instances come online and offline.
+
+is this tool available to install on onpremise solutions?
+
+Yes Confluent Control Center can be run on-prem. Download it from confluent.io and give it a try.
+
+I have 3 broker cluster, can i have 30partions to have high through put? Is there any restriction ?
+
+Yes, that is fine.

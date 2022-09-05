@@ -1,0 +1,328 @@
+https://medium.com/@stephane.maarek/how-to-prepare-for-the-confluent-certified-developer-for-apache-kafka-ccdak-exam-ab081994da78
+
+https://github.com/varmaprr/Confluent-Kafka-Certification
+
+https://github.com/simplesteph/kafka-beginners-course
+
+http://lahotisolutions.blogspot.com/2019/03/apache-kafka-notes.html
+
+https://codingnconcepts.com/post/apache-kafka-ccdak-exam-notes/#exam-preparation
+
+Exam: subbanarasareddy@yahoo.com/Nikhil@031982
+
+https://prod.examity.com/Confluent/Student/Home.aspx
+
+
+https://www.conduktor.io/
+
+================================================================
+Kafka cluster setup and Administration
+===============================================================
+1. Zookeeper -- 3.4 stable version.
+   It maintains meta data information like topics, partions, ISR
+   Strores Kafka Cluster Id
+   ACL Access control list if security enabled. 
+   Do the leader election for the partion.
+   Consumer offset are not stored in zookeeper latest. 	
+Zookeeper Quorums --- (2N+1) N can go down.   3 zookeepers for small deployments. 5 Big deployment ex:LinkedIn, Netflex.
+
+https://github.com/elkozmon/zoonavigator  --- To monitor it
+
+docker run -d -p 9000:9000 --name zoonavigator  --restart unless-stopped  elkozmon/zoonavigator:latest
+
+N-1 Brokers can be down. N- Replication factor
+
+
+# https://github.com/yahoo/kafka-manager
+docker run -d -p 9010:9000 --name kafka-manager  --restart unless-stopped  elkozmon/zoonavigator:latest
+
+
+export KAFKA_HEAP_OPTS="-Xmx4g"
+
+OS Page Cache is the main one to give kafka performace 16 GB  --4 GB heap + Remaining for OS Page Cache
+
+Increase file descriptors to 100000
+
+Make Sure only kafka runs in the server.
+
+To scale attach multiple EBS volumes into same broker. 
+
+===============================================================================================
+
+=================================================
+
+
+http://avro.apache.org/docs/current/spec.html
+
+Primitive Types
+The set of primitive type names is:
+
+null: no value
+boolean: a binary value
+int: 32-bit signed integer
+long: 64-bit signed integer
+float: single precision (32-bit) IEEE 754 floating-point number
+double: double precision (64-bit) IEEE 754 floating-point number
+bytes: sequence of 8-bit unsigned bytes
+string: unicode character sequence
+
+date is not a primitive type, it's a logical type.
+
+he default must be of the type of the first type in a union. Change the order of your union if you need a different default type!
+
+Logical Types are interpretation of primitives types (a date is an int for example, and a timestamp-millis a long)
+
+
+genericRecord.get("non_existent_field") can generate a runtime error if the avro object does not contain that field or a default for it. It is not the safest of Avro Records
+
+We place the avro schema in resources/avro and we run maven clean package to launch the plugin that will generate the SpecificRecord sources 
+
+Avro files are binaries and therefore cannot be read using a text editor. You need to use the avro tools to analyse the content of an Avro file
+
+using reflection you can quickly draft up your Avro Schemas. I then recommend you put these avro schemas in version control and generate a SpecificRecord from them
+
+Schema evolution allows us to ensure we can add or remove fields to our objects without breaking the programs reading that data
+
+Once you define an enum, you can't remove or add elements to it without breaking the schema
+
+Removing fields of default is fine for backward and forward compatible. 
+Adding fields with default is full compatibile. 
+
+Read old data with new Schema is backward compatibile.
+
+Read new Data with Old schema is forward compatible..
+
+Adding a field to a record without a default is a ____ schema evolution ? You can use the old schema to read new data, so it's a forward compatible change
+
+Removing a field that does not have a default is a _____ schema evolution ? You can use the new schema to read old data, so it's a backward compatible change
+
+Removing or adding a field that has a default  === we can read old and new data with either schemas, this is a fully compatible evolution
+
+
+If you are reading an Avro topic and want to deserialise it into a SpecificRecord, what option do you absolutely need to specify? specific.avro.reader=true
+
+
+==============================
+REST Proxy
+=====================================================================================================
+
+The REST Proxy is a separate application from the Kafka brokers and should not be installed on them
+
+You should use V2. V1 is an old API and won't support many of the newer Kafka features!
+
+You can't create a topic with the REST Proxy, for this you need to use the kafka-topics command.
+
+he producer needs to base64 encode the binary data before sending it off to the REST Proxy
+
+Consumers need to implement the base64 decoding of the received payload to correct retrieve Binary data
+
+I should send the complete Avro Schema payload in each POST request to the REST Proxy? After the first request, you should use the returned schema id
+
+Content-Type : application/vnd.kafka.binary.v2+json  ---Binary
+Content-Type : application/vnd.kafka.json.v2+json  ---Json
+Accept : application/vnd.kafka.v2+json, application/vnd.kafka+json, application/json   
+
+=================
+
+Delivery semantics of consumer: 
+
+1. At most once -- commit the offset before processing the data.
+2. At least once.
+3. Exactly once. 
+
+
+Producer with keys
+
+kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic --property parse.key=true --property key.separator=,
+> key,value
+> another key,another value
+
+Consumer with keys
+
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --from-beginning --property print.key=true --property key.separator=,
+
+
+https://github.com/yahoo/kafka-manager -- UI 
+
+
+KafkaCat (https://github.com/edenhill/kafkacat) is an open-source alternative to using the Kafka CLI, created by Magnus Edenhill.
+
+
+https://github.com/simplesteph/kafka-stack-docker-compose
+
+
+
+
+
+
+
+================================
+
+Comands: 
+
+kafka-topics.bat  --zookeeper localhost:2181 --list
+
+kafka-topics.bat  --zookeeper localhost:2181 --partitions 3 --replication-factor 1 --topic first-topic --create
+
+kafka-topics.bat  --zookeeper localhost:2181 --topic first-topic --describe
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic first-topic 
+
+kafka-console-consumer.bat --topic first-topic --bootstrap-server localhost:9092 --group first-group --from-beginning --max-messages 3
+
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group first-group --describe
+
+
+kafka-consumer-groups --bootstrap-server localhost:9092 --group first-group --topic first-topic --reset-offsets --to-offset 2 --execute
+
+kafka-consumer-groups --bootstrap-server localhost:9092 --group first-group --topic first-topic:0 --reset-offsets --to-offset 1 --execute
+
+kafka-consumer-groups --bootstrap-server localhost:9092 --group first-group --topic first-topic --reset-offsets --to-datetime 2019-12-13T19:05:30.100 --execute
+
+YYYY-MM-DDTHH:mm:SS.sss
+
+2019-12-13T19:05:30.100
+
+kafka-consumer-groups --bootstrap-server localhost:9092 --group first-group --topic first-topic --reset-offsets --by-duration P0DT10M0S --execute
+
+PnDTnHnMnS
+
+P0DT10M0S
+
+
+=============================================================================================
+STREAMS
+=============================================================================================
+
+https://www.quora.com/What-are-the-differences-and-similarities-between-Kafka-and-Spark-Streaming
+
+https://courses.datacumulus.com/kafka-streams-sn2
+
+https://docs.confluent.io/current/streams/developer-guide/index.html#transform-a-stream
+
+https://docs.confluent.io/current/_images/streams-stateful_operations.png
+
+
+
+Which of the following Kafka Streams operators are stateful?  --- ???
+
+A stream is sequence of immutable records and fully ordered , it can be replayed and fault tolenent. 
+
+Stream application can have Producer and Consumer. 
+
+Application Id config is used as group id for condumer in stream. 
+
+Kafka Stram creates internal topics. 1. Repartioning topics  if we transform key will do repation -- 2. Changelog topics In case of Aggregiation data will store here. 
+
+
+KStram just append to the list and KTable updates the existing ones based on key
+
+KTables act like a DB table if null values will delete the record.  
+
+
+To turn on compaction for a topic, use topic config log.cleanup.policy=compact.
+
+To set a delay to start compacting records after they are written, use topic config log.cleaner.min.compaction.lag.m
+
+You can use branch method in order to split your stream. This method takes predicates for splitting the source stream into several streams.
+
+Count :: --- KGroupedStream , null keys and values are ignored. KGroupedTable null keys ignored and null values considered deleted. 
+
+
+// leverage idempotent producer from Kafka 0.11 !
+        properties.setProperty(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true"); // ensure we don't push duplicates
+
+config.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE); -- To make Exactly once
+
+
+Primary Secondary Inner Join	Left Join	Outer Join
+KStream	KStream	Supported	Supported	Supported
+KTable	KTable	Supported	Supported	Supported
+KStream	KTable	Supported	Supported	N/A
+KStream	Global  KTable	Supported	Supported	N/A
+
+
+=================================================================================================
+
+
+Kafka Connect:  https://github.com/confluentinc/demo-scene
+
+==============================
+
+1. v0.9 kafka connect
+2. v0.10 --kafka streams.
+
+Connectors + User Config === Tasks
+
+Tasks executed by Workers ---Standalone or Distrubuted
+
+https://debezium.io/ --to get connectors
+
+
+second test:::::::::
+=================
+
+auto.offset.reset=none means that the consumer will crash if the offsets it's recovering from have been deleted from Kafka, which is the case here, as 10 < 45
+
+Consumers do not directly write to the __consumer_offsets topic, they instead interact with a broker that has been elected to manage that topic, which is the Group Coordinator broker
+
+ https://docs.confluent.io/current/streams/developer-guide/dsl-api.html#joining
+ 
+ Rebalance occurs when a new consumer is added, removed or consumer dies or paritions increased.
+ 
+ KSQL is based on Kafka Streams and allows you to express transformations in the SQL language that get automatically converted to a Kafka Streams program in the backend
+ 
+ Protocol buffers isn't a natively supported type for the Confluent REST Proxy, but you may use the binary format instead
+ 
+ The high watermark is an advanced Kafka concept, and is advanced once all the ISR replicates the latest offsets. A consumer can only read up to the value of the High Watermark (which can be less than the highest offset, in the case of acks=1)
+ 
+ Controller is a broker that in addition to usual broker functions is responsible for partition leader election. The election of that broker happens thanks to Zookeeper and at any time only one broker can be a controller
+ 
+ Sending a message with the null value is called a tombstone in Kafka and will ensure the log compacted topic does not contain any messages with the key K upon compaction
+
+
+
+===============================================
+curl http://localhost:8083/
+
+echo  |
+curl -X POST http://127.0.0.1:8083/connectors --header "content-
+Type:application/json" -d '{"name":"load-kafka-config", "config":{"connector.class":"FileStreamSource","file":"config/server.properties","topic":"kafka-config-topic"}}'
+
+curl --header "Content-Type: application/json" --request POST --data '{"name":"load-kafka-config", "config":{"connector.class":"FileStreamSource","file":"config/server.properties","topic":"kafka-config-topic"}}' http://127.0.0.1:8083/connectors
+
+docker run -it confluentinc/cp-ksql-cli http://172.22.160.1:8088 
+
+Third Test:
+===========
+
+KafkaConsumer is not thread-safe, KafkaProducer is thread safe.
+As of Kafka 2.3, the kafka-topics.sh command can take --bootstrap-server localhost:9092 as an argument. You could also use the (now deprecated) option of --zookeeper localhost:2181.
+
+Adding an extra enum state is a breaking change because clients can break as they simply assumed that the enum set is fixed.
+
+Calling close() on consumer immediately triggers a partition rebalance as the consumer will not be available anymore.
+
+retention.ms can be configured at topic level while creating topic or by altering topic. It shouldn't be set at the broker level (log.retention.ms) as this would impact all the topics in the cluster, not just the one we are interested in
+
+Using Future.get() to wait for a reply from Kafka will limit throughput.
+
+Kafka’s new bidirectional client compatibility introduced in 0.10.2 allows this. Read more here: https://www.confluent.io/blog/upgrading-apache-kafka-clients-just-got-easier/
+
+The Controller is a broker that is responsible for electing partition leaders
+
+The REST Proxy requires to receive data over REST that is already base64 encoded, hence it is the responsibility of the producer
+
+With SSL, messages will need to be encrypted and decrypted, by being first loaded into the JVM, so you lose the zero copy optimization. See more information here: https://twitter.com/ijuma/status/1161303431501324293?s=09
+
+Kafka partitions are made of segments (usually each segment is 1GB), and each segment has two corresponding indexes (offset index and time index)
+
+session.timeout.ms must be decreased to 3 seconds to allow for a faster rebalance, and the heartbeat thread must be quicker, so we also need to decrease heartbeat.interval.ms
+
+Replicas are passive - they don't handle produce or consume request. Produce and consume requests get sent to the node hosting partition leader.
+
+A hopping window is defined by two properties: the window's size and its advance interval (aka "hop"), e.g., a hopping window with a size 5 minutes and an advance interval of 1 minute.
+
+unclean.leader.election.enable=true allows non ISR replicas to become leader, ensuring availability but losing consistency as data loss will occur
+
+

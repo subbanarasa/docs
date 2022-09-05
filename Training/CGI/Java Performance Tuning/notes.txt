@@ -1,0 +1,16 @@
+
+1. Java VisualVM
+2. JMC
+3. Yourkit
+4. Jprofiler
+
+#########Class Loader######
+
+Bootstrap --rt.jar
+Ext loader
+Application -- cp/classpath
+
+
+Jcompiler
+
+https://github.com/asaravanakumar/iiht_javaperftuning_cgi.git

@@ -1,0 +1,268 @@
+====================================================
+AWS IAM (Identity and Access Management) 14/12/2019
+====================================================
+AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources for your users. You use IAM to control
+who can use your AWS resources (authentication) and what resources they can use and in what ways (authorization).
+
+User,
+Roles,
+Groups
+Polocies
+
+IAM can be controlled/accessed using
+
+1. AWS CLI
+2. AWS SDK
+3. Management Console 
+
+Principles: 
+
+1. Root User
+2. Users
+3. Roles
+
+How to create User ? 
+
+Lab: Create a User with Only EC2 read Access ? 
+
+EC2 Instance can't access S3 Storage by default -- 
+
+Qus: What action is required to provide access to EC2 instance for S3 storage?
+
+Ans  Create Role for Ec2 Service with S3 access permission, later on attach the Role with EC2 instance. Now, the EC2 instance can access S3 storage. 
+
+
+aws s3 sync /etc s3://cognixiademo/    ===Command to copy from EC2 to S3
+
+How to see policy code in JSON ? 
+
+Create new polcy using JSON conent? 
+
+Deleting an IAM User (Console) -- When you use the AWS Management Console to delete an IAM user, IAM automatically deletes the following information for you:
+
+- The user
+
+- Any group memberships—that is, the user is removed from any IAM groups that the user was a member of
+
+- Any password associated with the user
+
+- Any access keys belonging to the user
+
+- All inline policies embedded in the user (policies that are applied to a user via group permissions are not affected)
+
+- Any associated MFA device
+
+==================================================================
+S3 (Simple Storage Service )
+===================================================================
+
+AWS Storage: 
+
+Amazon S3 -- Object Level Storage -- Global access. 
+Amazon Glacier -- Archival purpose. not frequent access.
+Amazon EBS -- Block Level storage and need to mount to EC2 to access. Can be used for OS installation.
+Amazon EFS -- Common storage is within VPC 
+
+
+
+S3 -- It is bucket and maximum 100 buckets can be created. Bucket name should unique across global
+
+Free tier only 5GB can be stored. 
+
+If you create folder in the bucket.  
+
+Important: Files in S3, known as Objects
+Object is a File in S3
+Object Key à File Name is called Object Key
+
+
+Lab:: How to upload data to S3 bucket via Console?  
+
+To give permisison for the object , need to give permission to the 
+
+Lab: How to publish a static website using S3 storage?
+
+
+============================================================================
+======================
+AWS CLI    15/12/2019
+======================
+
+https://docs.aws.amazon.com/cli/latest/userguide/install-windows.html
+
+
+
+Data Transfer b/w EC2 to S3
+
+aws s3 sync s3://cognixia14dec.com/ /home/ec2-user/  ---Need to run in EC2
+
+Install AWS CLI in windows.
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonS3.html
+
+
+aws s3 sync s3://cognixiademo/  13.232.65.165://home/ec2-user/
+
+==============================
+S3 Storage classes: 
+===============================
+
+Glassier storage class publicly can't be accessed. 
+====================================
+S3 CRR (Cross Region Replication)
+======================================
+Lab:: Let say, we have two buckets in two diff regions, we want to establish unidirectional CRR between them?
+
+
+===================================
+Lambda Function
+=====================================
+
+Execution of Program or codes in a serverless manner
+
+If your program takes 2 minutes for its execution, and AWS (Region) charges $0.0001 for each 100 ms. Calculate the total cost, you need to pay for one time execution for that code?
+
+
+
+=============================================
+Route53 --Application domain name 21/12/2019
+=============================================
+
+Amazon Route 53 is a highly available and scalable cloud Domain Name System (DNS) web service.
+
+
+1. Domain name Registration
+2. Route Internet topic
+3. Health check of Resources.
+
+https://my.freenom.com/domains.php
+
+Hostedzone configure
+
+When you create a resource record set, you choose a routing policy,which determines how Amazon Route 53 responds to queries:
+1. Simple Routing Policy
+2. Weighted Routing Policy
+3. Latency Routing Policy
+4. Failover Routing Policy (Public Hosted Zones Only)
+5. Geolocation Routing Policy
+
+
+====================================
+Elastic Beanstack (EBS)  22/12/2019
+====================================
+
+With Elastic Beanstalk, you can quickly deploy and manage applications in the AWS cloud without worrying about the infrastructure that runs those applications.
+
+AWS Elastic Beanstalk reduces management complexity without restricting choice or control. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling,and application health monitoring.
+
+
+It is a PAAS. It do all the below things.
+
+Minimum steps to deploy an application using AWS Infra
+1. Creating EC2 Instance
+2. Configuring SG
+3. Prepare machine for your application : Installations and configuration
+4. Copying the code from your local server or s3 to EC2 instance to run
+5. If you want to apply ELB and Auto Scaling, you have to create an AMI from the EC2 instance
+6. Now configure ELB and AutoScaling
+7. If RDS or database features are required, in case you have to create RDS too.
+8. May be you are using an EIP for the EC2 Instance
+
+
+
+===========================================
+RDS Relational Database service  29/12/2019
+===========================================
+
+RDS Subnet group is collection of Subnets that we can designate within the VPC.
+
+Amazon RDS currently supports the MySQL, Maria DB, PostgreSQL, Oracle, and Microsoft SQL Server DB engines.
+
+For each DB instance, you can select from 20 GB to 16 TB of associated storage capacity
+
+DB instance storage comes in three types: Magnetic, General Purpose (SSD), and Provisioned IOPS (SSD).
+
+Mysql --3306 
+
+yum install mysql -- to install client
+
+AWS Reddhift is the Datawarehouse from AWS.
+
+Dynamo DB for no sql
+
+=======================================
+Cloud Front
+=======================================
+
+A content delivery network (CDN) is a system of distributed servers (network) that deliver webpages and other web content to a user based on the geographic locations of the user, the origin of the webpage and a content delivery server.
+
+It is used to deliver the content of the website to edge locations. CloudFront act as Cache server. 
+
+Edge locations can be describer collection of dataservers in the data centers. 
+
+1. Origin server --S3 or HTTP Server
+2. Custom Origon -- Like EC2
+
+CLOUDFRONT Distribution Types:
+• Web Distribution: Typically used for Websites.
+• RTMP: Used for Media Streaming.
+
+
+
+=========================================
+Cloud Formation
+==========================================
+It is a design tool to create infracture. Based on template we can create infracture. 
+
+CloudFormater tool can be used to generate the template based on exisitng resources. 
+
+it creates ec2 instace where domainname access of those EC2 will give steps to create template.
+
+
+
+======================================
+Elastic File System --EFS. 04/01/2020
+======================================
+It is common storage for EC2 instances. It supports NFS4 protocol.
+
+Steps to mount EFS into EC2 instance. 
+
+	1  sudo yum install -y amazon-efs-utils
+    2  sudo mkdir efs
+    3  ls -l
+    4  sudo chmod 757 efs/
+    5  ls -l
+    6  sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-2a373aab.efs.us-east-1.amazonaws.com:/ efs
+    7  mount -s | grep nfs
+    8  history
+
+Port-2049
+
+=================================
+Elastic Transcoder
+=================================
+
+Amazon Elastic Transcoder is media transcoding in the cloud. It is designed to be a highly scalable, easy to use and a cost effective way for developers and businesses to convert (or “transcode”) media files from their source format into versions that will playback on devices like smartphones, tablets and PCs.
+
+You can give srs S3 bucket and destination S3 bucket . 
+
+Amazon Polly to convert text to speach. 
+
+
+=======================================
+Cloud Watch
+=======================================
+
+It is monitoring service for AWS Services. 
+
+Amazon CloudWatch is a monitoring service for AWS cloud resources and the applications you run on AWS. You can use Amazon CloudWatch to collect and track metrics, collect and monitor log files, set alarms, and automatically react to changes in your AWS resources. Amazon CloudWatch can monitor AWS resources such as Amazon EC2 instances, Amazon DynamoDB tables, and Amazon RDS DB instances, as well as custom metrics generated by your
+applications and services.
+
+1. Basic Monitoring -- It is free , poll every 5 minutes , work on 10 metrics , 5 GB of Data Ingestion and 5GB data storage.
+2. Detail Monitoring -- It is not free and poll every minutes. chargable for every instance on monthly wise.  
+
+It works with EC2, RDS, EBS,EFS 
+
+Amazon CloudWatch integrates with AWS Identity and Access Management (IAM) so that you can specify which CloudWatch actions a user in your AWS Account can perform.
+
+You can't use IAM to control access to CloudWatch data for specific resources.

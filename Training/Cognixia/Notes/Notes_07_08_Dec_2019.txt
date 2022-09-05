@@ -1,0 +1,57 @@
+07-12-2019:
+======================================================================
+VPC Peering 
+============
+
+It is mainly used to connect other VPC by using Private IP's
+
+
+1. VPC Peering is connection b/w two VPC  of different accounts or regions
+
+Peering Connection:pcx-0deb82eccaed5e6a3
+
+2. In each VPC assocated Routing table need to configure other N/W ID with Peerconnection . 
+3. To check connectivity is working b/w vpc's create instances in each VPC and check. 
+
+=====================================================================
+Elastic Load Balancing (ELB)
+=====================================================================
+ELB is traffic load balancing service. It is fault tolerence service. 
+
+Fault tolerence is if any instance goes down automatically create similar capacity instance. 
+
+Loadbalancing is two types n/w level (TCP) and application level (HTTP/HTTPS
+
+We can access VM without assigning public IP using Loadbalancer.
+
+Internat faced ELB is where outside traffic via intertnet to Loadbalancer. 
+Internal Load balancer is where works b/w public and private sub-nets. Like EC2 instances takes traffic and forward to internal loadbalancer. 
+
+==========================================================================
+Auto-scalling
+==========================================================================
+
+It increeases computing resources. 
+
+1. Launching Config -- 
+2. Autoscalling Groups -- Logical units instances 
+
+//08/12/2019
+==========
+
+You have one machine, you want to apply AS, we have a condition that if the cpu utilization of the machine goes/touches 70%, then automatically one more VM should be created.
+
+Min =1
+Max =4
+
+Condition è CPU Utilization => 70% è Actionè add one more VM
+
+====================================================
+IAM (Identity and Access Management)
+====================================================
+It is used to access AWS resources. 
+
+Lab 1: How to create a User with administrative level of permission so that you can access your AWS account instead using root account
+
+Lab2: Now as an administrator user, we want to create a user with EC2 Read only permissions.
+
